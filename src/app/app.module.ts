@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CourseComponent } from './course/course.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { LogoComponent } from './logo/logo.component';
-import { LoginComponent } from './login/login.component';
+import { CourseComponent } from './courses/course/course.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { LogoComponent } from './shared/logo/logo.component';
+import { LoginComponent } from './shared/login/login.component';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     FooterComponent,
     LogoComponent,
-    LoginComponent
+    LoginComponent,
+    CoursesListComponent
   ],
   imports: [
     BrowserModule
