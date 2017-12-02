@@ -7,17 +7,18 @@ import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { ToolboxComponent } from './shared-components/toolbox/toolbox.component';
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
+import { CoursesComponent } from './pages/courses/courses.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseComponent,
+    CoursesComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent,
     ToolboxComponent,
-    SearchableItemComponent
+    SearchableItemComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule
