@@ -1,20 +1,37 @@
 .searchable-item{
   border: 1px solid grey;
-  padding: 10px;
+  padding: 0 0 10px 10px;
   margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
-.searchable-item__header{
+.searchable-item__content__header{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.searchable-item__header__title{
-  width: 60%;
+.searchable-item__content__header__title{
+  width: 80%;
 }
 
-.searchable-item__description{
+.searchable-item__content__description{
   margin: 0;
+}
+
+.searchable-item__content{
+  width: 75%;
+}
+
+.searchable-item__actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.searchable-item__button{
+  width: 100%;
 }

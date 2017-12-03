@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .header__logo{
@@ -13,10 +14,16 @@
 .header__logo__image{
   width: 100%;
   height: auto;
+  align-self: center;
+}
+
+.header__page-name{
+  align-self: center;
 }
 
 .header__account{
-  align-self: flex-end;
+margin-left: auto;
+
   display: flex;
   flex-direction: column;
 

@@ -8,6 +8,7 @@ import { FooterComponent } from './shared-components/footer/footer.component';
 import { ToolboxComponent } from './shared-components/toolbox/toolbox.component';
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
 import { CoursesComponent } from './pages/courses/courses.component';
+import { ButtonComponent } from './shared-components/button/button.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CoursesComponent } from './pages/courses/courses.component';
     FooterComponent,
     ToolboxComponent,
     SearchableItemComponent,
-    CoursesComponent
+    CoursesComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule

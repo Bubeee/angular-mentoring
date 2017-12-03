@@ -1,11 +1,16 @@
 <div class="searchable-item">
-  <div class="searchable-item__header">
-    <h3 class="searchable-item__header__title">{{searchableItem.title}}</h3>
-    <p class="searchable-item__header__additional-info">{{searchableItem.additionalInfo}}</p>
+  <div class="searchable-item__content">
+    <div class="searchable-item__content__header">
+      <h3 class="searchable-item__content__header__title">{{searchableItem.title}}</h3>
+      <p class="searchable-item__content__header__additional-info">{{searchableItem.additionalInfo}}</p>
+    </div>
+
+    <p class="searchable-item__content__description">{{searchableItem.description}}</p>
+
   </div>
 
-
-  <p class="searchable-item__description">{{searchableItem.description}}</p>
-
-
+  <div class="searchable-item__actions">
+    <app-button [className]="'searchable-item__button'">Edit course</app-button>
+    <app-button [className]="'searchable-item__button'">Delete</app-button>
+  </div>
 </div>

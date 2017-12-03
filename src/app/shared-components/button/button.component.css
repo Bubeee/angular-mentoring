@@ -1,0 +1,7 @@
+.button{
+  border: 1px groove blue;
+  background-color: aliceblue;
+  font-size: 12px;
+  padding: 5px 10px;
+  width: 100%;
+}
