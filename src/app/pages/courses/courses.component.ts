@@ -11,10 +11,28 @@ export class CoursesComponent implements OnInit {
 
   constructor() {
     this.courseList = [
-      new CourseItem(1, 'Angular', new Date(), '98 min', 'Lorem, ipsumsd bla'),
-      new CourseItem(2, 'Angular', new Date(), '123 min', 'Lorem, ipsumsd bla'),
-      new CourseItem(3, 'Angular', new Date(), '324 min', 'Lorem, ipsumsd bla'),
-      new CourseItem(4, 'Angular', new Date(), '19 min', 'Lorem, ipsumsd bla')
+      new CourseItem(
+        1,
+        'AngularJS',
+        new Date(),
+        '98 min',
+        'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      ),
+      new CourseItem(
+        2,
+        'Video course',
+        new Date(),
+        '123 min',
+        'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      ),
+      new CourseItem(
+        3,
+        'Long course name macintosh macintosh macintosh macintosh macintosh windows alala',
+        new Date(),
+        '324 min',
+        'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsuas dasdas dasd asdasd asmsd ipsumsd bla Lorem, ipsumsd bla Lorem, ipsuas dasdas dasd asdasd as ipsumsd bla Lorem, ipsumsd bla Lorem, ipsuas dasdas dasd asdasd as ipsumsd bla Lorem, ipsumsd bla Lorem, ipsuas dasdas dasd asdasd as bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      ),
+      new CourseItem(4, 'Angular 2', new Date(), '19 min', 'Lorem, ipsumsd bla')
     ];
   }
 

@@ -1,0 +1,24 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.header__logo{
+  width: 35px;
+  display: grid;
+  margin: 0 10px;
+}
+
+.header__logo__image{
+  width: 100%;
+  height: auto;
+}
+
+.header__account{
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+
+  text-align: right;
+}

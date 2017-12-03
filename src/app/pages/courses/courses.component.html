@@ -1,6 +1,10 @@
-<ul>
-  <li *ngFor="let course of courseList">
-    <app-searchable-item 
-        [searchableItem]="course"></app-searchable-item>
-  </li>
-</ul>
+<div class="course-component__container">
+  <app-header></app-header>
+  <app-toolbox></app-toolbox>
+
+  <div *ngFor="let course of courseList">
+    <app-searchable-item [searchableItem]="course"></app-searchable-item>
+  </div>
+
+  <app-footer></app-footer>
+</div>

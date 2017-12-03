@@ -1,0 +1,20 @@
+.searchable-item{
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.searchable-item__header{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.searchable-item__header__title{
+  width: 60%;
+}
+
+.searchable-item__description{
+  margin: 0;
+}
