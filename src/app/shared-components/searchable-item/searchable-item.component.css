@@ -22,7 +22,7 @@
 }
 
 .searchable-item__content{
-  width: 75%;
+  width: 80%;
 }
 
 .searchable-item__actions{
@@ -30,6 +30,8 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 10px;
+  
+  width: 15%;
 }
 
 .searchable-item__button{

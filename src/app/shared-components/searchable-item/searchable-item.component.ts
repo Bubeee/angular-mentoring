@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchableItem } from './searchable-item';
 
 @Component({
@@ -9,7 +9,12 @@ import { SearchableItem } from './searchable-item';
 export class SearchableItemComponent implements OnInit {
   @Input() searchableItem: SearchableItem;
 
-  constructor() {
+  @Output() onDelete = new EventEmitter<number>();
+
+  constructor() {}
+
+  delete(id: number) {
+    this.onDelete.emit(id);
   }
 
   ngOnInit() {}

@@ -1,28 +1,28 @@
-.header{
+.header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
 
-.header__logo{
+.header__logo {
   width: 35px;
   display: grid;
   margin: 0 10px;
 }
 
-.header__logo__image{
+.header__logo__image {
   width: 100%;
   height: auto;
   align-self: center;
 }
 
-.header__page-name{
+.header__page-name {
   align-self: center;
 }
 
-.header__account{
-margin-left: auto;
+.header__account {
+  margin-left: auto;
 
   display: flex;
   flex-direction: column;

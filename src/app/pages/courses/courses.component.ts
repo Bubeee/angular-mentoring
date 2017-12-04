@@ -36,5 +36,9 @@ export class CoursesComponent implements OnInit {
     ];
   }
 
+  onDelete(id: number) {
+    this.courseList = this.courseList.filter(item => item.id !== id);
+  }
+
   ngOnInit() {}
 }

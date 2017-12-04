@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 
@@ -8,7 +9,6 @@ import { FooterComponent } from './shared-components/footer/footer.component';
 import { ToolboxComponent } from './shared-components/toolbox/toolbox.component';
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
 import { CoursesComponent } from './pages/courses/courses.component';
-import { ButtonComponent } from './shared-components/button/button.component';
 
 
 @NgModule({
@@ -19,11 +19,10 @@ import { ButtonComponent } from './shared-components/button/button.component';
     FooterComponent,
     ToolboxComponent,
     SearchableItemComponent,
-    CoursesComponent,
-    ButtonComponent
+    CoursesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

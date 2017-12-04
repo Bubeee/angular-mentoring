@@ -1,0 +1,23 @@
+.toolbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid saddlebrown;
+}
+
+.toolbox__search_input {
+  width: 33%;
+}
+
+.toolbox__search_button {
+  margin: 0 10px;
+  width: 15%;
+}
+
+.toolbox__add-item_button {
+  width: 15%;
+  margin-left: auto;
+}
