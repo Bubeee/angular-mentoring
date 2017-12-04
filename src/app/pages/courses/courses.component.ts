@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  DoCheck,
+  OnDestroy,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  SimpleChanges
+} from '@angular/core';
 import { CourseItem } from './course-item';
 
 @Component({
@@ -6,10 +16,48 @@ import { CourseItem } from './course-item';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent
+  implements OnInit,
+    OnChanges,
+    DoCheck,
+    OnDestroy,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit {
+
   courseList: CourseItem[];
 
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+  }
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit');
+  }
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+  }
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges');
+  }
+
   constructor() {
+    this.courseList = [];
+  }
+
+  onDelete(id: number) {
+    console.log(`deleted id is: ${id}`);
+    this.courseList = this.courseList.filter(item => item.id !== id);
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit');
+
     this.courseList = [
       new CourseItem(
         1,
@@ -35,10 +83,4 @@ export class CoursesComponent implements OnInit {
       new CourseItem(4, 'Angular 2', new Date(), '19 min', 'Lorem, ipsumsd bla')
     ];
   }
-
-  onDelete(id: number) {
-    this.courseList = this.courseList.filter(item => item.id !== id);
-  }
-
-  ngOnInit() {}
 }
