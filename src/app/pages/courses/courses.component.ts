@@ -47,6 +47,7 @@ export class CoursesComponent
   }
 
   constructor() {
+    console.log('constructor');
     this.courseList = [];
   }
 
