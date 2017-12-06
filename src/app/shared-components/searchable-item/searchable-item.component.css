@@ -10,11 +10,16 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .searchable-item__content__header__title{
-  width: 80%;
+  width: 60%;
+  margin-right: 10px;
+}
+
+.searchable-item__content__header__date{
+  margin-left: auto;
 }
 
 .searchable-item__content__description{
