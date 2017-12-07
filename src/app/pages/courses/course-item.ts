@@ -1,14 +1,9 @@
-import { SearchableItem } from '../../shared-components/searchable-item/searchable-item';
+import { SearchableItem, SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 
 export class CourseItem extends SearchableItem {
   constructor(
-    id: number,
-    title: string,
-    creationDate: Date,
-    additionalInfo: string,
-    description: string
+    searchableItemDto: SearchableItemDto
   ) {
-    super(id, title, creationDate, additionalInfo, description);
-
+    super(searchableItemDto);
   }
 }

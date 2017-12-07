@@ -1,21 +1,23 @@
-export abstract class SearchableItem {
+export class SearchableItemDto {
+  public id: number;
+  public title: string;
+  public creationDate: Date;
+  public additionalInfo: string;
+  public description: string;
+}
+
+export abstract class SearchableItem implements SearchableItemDto {
   public id: number;
   public title: string;
   public creationDate: Date;
   public additionalInfo: string;
   public description: string;
 
-  constructor(
-    id: number,
-    title: string,
-    creationDate: Date,
-    additionalInfo: string,
-    description: string
-  ) {
-    this.id = id;
-    this.title = title;
-    this.creationDate = creationDate;
-    this.additionalInfo = additionalInfo;
-    this.description = description;
+  constructor(dto: SearchableItemDto) {
+    this.id = dto.id;
+    this.title = dto.title;
+    this.creationDate = dto.creationDate;
+    this.additionalInfo = dto.additionalInfo;
+    this.description = dto.description;
   }
 }
