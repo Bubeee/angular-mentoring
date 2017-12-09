@@ -1,63 +1,26 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  DoCheck,
-  OnDestroy,
-  AfterContentInit,
-  AfterContentChecked,
-  AfterViewInit,
-  SimpleChanges
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CourseItem } from './course-item';
+import { CoursesService } from './courses.service';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  styleUrls: ['./courses.component.css'],
+  providers: [CoursesService]
 })
 export class CoursesComponent implements OnInit {
-  courseList: CourseItem[];
+  private courseService: CoursesService;
+  private courseList: CourseItem[];
 
-  constructor() {
-    this.courseList = [];
+  ngOnInit(): void {
+    this.courseList = this.courseService.GetCourseList();
+  }
+  constructor(courseService: CoursesService) {
+    this.courseService = courseService;
   }
 
   onDelete(id: number) {
     console.log(`deleted id is: ${id}`);
-    this.courseList = this.courseList.filter(item => item.id !== id);
-  }
-
-  ngOnInit() {
-    this.courseList = [
-      new CourseItem({
-        id: 1,
-        title: 'AngularJS',
-        creationDate: new Date(),
-        additionalInfo: '98 min',
-        description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
-      }),
-      new CourseItem({
-        id: 2,
-        title: 'AngularJS',
-        creationDate: new Date(),
-        additionalInfo: '98 min',
-        description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
-      }),
-      new CourseItem({
-        id: 3,
-        title: 'AngularJS',
-        creationDate: new Date(),
-        additionalInfo: '98 min',
-        description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
-      }),
-      new CourseItem({
-        id: 4,
-        title: 'AngularJS',
-        creationDate: new Date(),
-        additionalInfo: '98 min',
-        description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
-      }),
-    ];
+    // this.courseList = this.courseList.filter(item => item.id !== id);
   }
 }
