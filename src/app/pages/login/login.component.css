@@ -1,0 +1,46 @@
+.login-form__container {
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 50%;
+  margin: auto;
+
+  margin-top: 20%;
+  border-radius: 5px;
+}
+
+.login-form__form-group{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.login-from__label {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #333;
+  width: 100px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.login-form__input{
+
+}
+
+.login-form__submit-button {
+  height: 30px;
+  width: 150px;
+  border: 1px solid #000;
+  margin-top: 10px;
+}
+
+.login-form__form-group {
+}

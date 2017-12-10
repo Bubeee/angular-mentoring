@@ -3,24 +3,29 @@ import { CourseItem } from './course-item';
 import { CoursesService } from './courses.service';
 
 @Component({
-  selector: 'app-courses',
+  selector: 'app-courses-page',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
   providers: [CoursesService]
 })
 export class CoursesComponent implements OnInit {
-  private courseService: CoursesService;
   private courseList: CourseItem[];
 
   ngOnInit(): void {
-    this.courseList = this.courseService.GetCourseList();
+    this.getCourses();
   }
-  constructor(courseService: CoursesService) {
-    this.courseService = courseService;
+
+  private getCourses() {
+    this._courseService
+      .GetCourses()
+      .subscribe(courses => this.courseList = courses);
   }
+
+  constructor(private _courseService: CoursesService) {}
 
   onDelete(id: number) {
     console.log(`deleted id is: ${id}`);
-    // this.courseList = this.courseList.filter(item => item.id !== id);
+    this._courseService.RemoveItem(id);
+    this.getCourses();
   }
 }

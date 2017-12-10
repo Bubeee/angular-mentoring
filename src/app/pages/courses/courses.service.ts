@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from './course-item';
 import { SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class CoursesService {
@@ -51,8 +53,8 @@ export class CoursesService {
 
   constructor() {}
 
-  public GetCourseList(): CourseItem[] {
-    return CoursesService.coursesCollection;
+  public GetCourses(): Observable<CourseItem[]> {
+    return of(CoursesService.coursesCollection);
   }
 
   public CreateCourse(searchableItem: SearchableItemDto): CourseItem {
@@ -74,5 +76,11 @@ export class CoursesService {
     updatingCourse.title = courseItem.title;
 
     return updatingCourse;
+  }
+
+  public RemoveItem(id: number) {
+    CoursesService.coursesCollection = CoursesService.coursesCollection.filter(
+      course => course.id !== id
+    );
   }
 }

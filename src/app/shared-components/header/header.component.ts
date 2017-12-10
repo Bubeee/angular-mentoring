@@ -11,6 +11,5 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  // stub for future logoff feature
   logoff() {}
 }
