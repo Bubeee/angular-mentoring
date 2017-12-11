@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
 
 @Injectable()
 export class AuthorizationService {
-  private _currentLogin: User;
-
   constructor() {}
-  public Login(name: string) {
-    this._currentLogin.Name = name;
+  public Login(name: string, password: string) {
+    localStorage.setItem('currentLogin', name);
+    localStorage.setItem('currentToken', this.GenerateToken(password));
   }
 
   public Logout() {
-    this._currentLogin.Name = '';
-    this._currentLogin.Token = '';
+    localStorage.setItem('currentLogin', '');
+    localStorage.setItem('currentToken', '');
   }
 
   public IsAuthenticated(): boolean {
-    return this._currentLogin.Name !== '' && this._currentLogin.Token !== '';
+    if (localStorage.getItem('currentLogin') === undefined || localStorage.getItem('currentLogin') === '') {
+      return false;
+    }
+
+    return true;
   }
 
   public GetUserInfo(): string {
-    return this._currentLogin.Name;
+    return localStorage.getItem('currentLogin');
+  }
+
+  private GenerateToken(password: string): string {
+    let hash = 0, i, chr;
+
+    for (i = 0; i < password.length; i++) {
+      chr = password.charCodeAt(i);
+      // tslint:disable-next-line:no-bitwise
+      hash = (hash << 5) - hash + chr;
+      // tslint:disable-next-line:no-bitwise
+      hash |= 0;
+    }
+
+    return hash.toString();
   }
 }

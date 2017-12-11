@@ -79,8 +79,10 @@ export class CoursesService {
   }
 
   public RemoveItem(id: number) {
-    CoursesService.coursesCollection = CoursesService.coursesCollection.filter(
-      course => course.id !== id
+    const removingIndex = CoursesService.coursesCollection.findIndex(
+      course => course.id === id
     );
+
+    CoursesService.coursesCollection.splice(removingIndex, 1);
   }
 }

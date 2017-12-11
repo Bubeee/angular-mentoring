@@ -10,6 +10,7 @@ import { CoursesService } from './courses.service';
 })
 export class CoursesComponent implements OnInit {
   private courseList: CourseItem[];
+  itemTitle = 'Course';
 
   ngOnInit(): void {
     this.getCourses();
@@ -26,6 +27,5 @@ export class CoursesComponent implements OnInit {
   onDelete(id: number) {
     console.log(`deleted id is: ${id}`);
     this._courseService.RemoveItem(id);
-    this.getCourses();
   }
 }

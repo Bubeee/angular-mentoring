@@ -14,7 +14,7 @@
   border-radius: 5px;
 }
 
-.login-form__form-group{
+.login-form__form-group {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -31,8 +31,7 @@
   margin-right: 15px;
 }
 
-.login-form__input{
-
+.login-form__input {
 }
 
 .login-form__submit-button {
@@ -43,4 +42,5 @@
 }
 
 .login-form__form-group {
+  width: 100%;
 }

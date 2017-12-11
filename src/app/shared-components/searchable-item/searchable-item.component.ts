@@ -14,6 +14,7 @@ import { SearchableItem } from './searchable-item';
 })
 export class SearchableItemComponent implements OnInit {
   @Input() searchableItem: SearchableItem;
+  @Input() itemTitle: string;
 
   @Output() onDelete = new EventEmitter<number>();
 

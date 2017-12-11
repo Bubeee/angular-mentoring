@@ -2,14 +2,14 @@
   <form method="post">
     <div class="login-form__form-group">
       <label for="Login" class="login-from__label">Login:</label>
-      <input class="login-form__input" name="Login" />
+      <input type="text" class="login-form__input" name="Login" [(ngModel)]="_login"/>
     </div>
 
     <div class="login-form__form-group">
       <label for="Password" class="login-from__label">Password:</label>
-      <input class="login-form__input" name="Password" />
+      <input type="password" class="login-form__input" name="Password" [(ngModel)]="_password"/>
     </div>
 
-    <input class="login-form__submit-button" type="button" value="Enter" />
+    <input class="login-form__submit-button" type="button" value="Enter" (click)="login(_login, _password)" />
   </form>
 </div>

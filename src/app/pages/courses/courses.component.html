@@ -1,8 +1,8 @@
 <div class="course-component__container">
-  <app-toolbox></app-toolbox>
+  <app-toolbox [itemTitle]="itemTitle"></app-toolbox>
 
   <div *ngFor="let course of courseList">
-    <app-searchable-item [searchableItem]="course" (onDelete)="onDelete($event)"></app-searchable-item>
+    <app-searchable-item [searchableItem]="course" [itemTitle]="itemTitle" (onDelete)="onDelete($event)"></app-searchable-item>
   </div>
 
 </div>
