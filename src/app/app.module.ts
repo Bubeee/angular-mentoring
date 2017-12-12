@@ -10,20 +10,11 @@ import { SearchableItemComponent } from './shared-components/searchable-item/sea
 import { CoursesComponent } from './pages/courses/courses.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthorizationService } from './shared-services/authorization/authorization.service';
-import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes: Routes = [
-  {
-    path: 'courses',
-    component: CoursesComponent,
-    data: { title: 'Courses List' }
-  },
-  { path: 'login', component: LoginComponent },
-  { path: '',
-    redirectTo: '/courses',
-    pathMatch: 'full'
-  },
-];
+import { OverlayModule } from '@angular/cdk/overlay';
+import { ConfirmationDialogComponent } from './shared-components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
 
 @NgModule({
   declarations: [
@@ -34,14 +25,12 @@ const appRoutes: Routes = [
     ToolboxComponent,
     SearchableItemComponent,
     CoursesComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmationDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  providers: [AuthorizationService],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
+  providers: [AuthorizationService, ConfirmaitonDialogOverlayService],
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent]
 })
 export class AppModule {}

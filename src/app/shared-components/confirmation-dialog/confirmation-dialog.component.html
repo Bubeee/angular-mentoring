@@ -1,0 +1,12 @@
+<div class="confirmation-dialog">
+  <div class="confirmation-dialog__header">
+    {{item.title}}
+  </div>
+  <div class="confirmation-dialog__body">
+    Do you really want to delete this item?
+  </div>
+  <div class="confirmation-dialog__footer">
+    <input class="button" type="button" value="No" (click)="noClick()">
+    <input class="button" type="button" value="Yes" (click)="yesClick()">
+  </div>
+</div>
