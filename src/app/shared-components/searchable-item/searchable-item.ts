@@ -4,6 +4,7 @@ export class SearchableItemDto {
   public creationDate: Date;
   public additionalInfo: string;
   public description: string;
+  public topRated: boolean;
 }
 
 export abstract class SearchableItem implements SearchableItemDto {
@@ -12,6 +13,7 @@ export abstract class SearchableItem implements SearchableItemDto {
   public creationDate: Date;
   public additionalInfo: string;
   public description: string;
+  public topRated: boolean;
 
   constructor(dto: SearchableItemDto) {
     this.id = dto.id;
@@ -19,5 +21,6 @@ export abstract class SearchableItem implements SearchableItemDto {
     this.creationDate = dto.creationDate;
     this.additionalInfo = dto.additionalInfo;
     this.description = dto.description;
+    this.topRated = dto.topRated;
   }
 }

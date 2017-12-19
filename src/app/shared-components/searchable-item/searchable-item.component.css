@@ -1,9 +1,13 @@
 .searchable-item{
-  border: 1px solid grey;
+  border: 3px solid grey;
   padding: 0 0 0 10px;
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
+}
+
+.searchable-item__top-rated{
+  background-color: khaki;
 }
 
 .searchable-item__content__header{
@@ -19,8 +23,13 @@
   margin-top: 10px
 }
 
+.searchable-item__content__header__top-rated{
+  color: gold;
+}
+
 .searchable-item__content__header__date{
-  margin-left: auto;
+  margin-left: 10%;
+  width: 10%;
 }
 
 .searchable-item__content__description{

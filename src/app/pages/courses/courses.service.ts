@@ -10,48 +10,56 @@ export class CoursesService {
     new CourseItem({
       id: 1,
       title: 'AngularJS',
-      creationDate: new Date(),
+      creationDate: new Date(2019, 1, 1),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: true
     }),
     new CourseItem({
       id: 2,
       title: 'AngularJS',
-      creationDate: new Date(),
+      creationDate: new Date(2018, 1, 1),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: true
     }),
     new CourseItem({
       id: 3,
       title: 'AngularJS',
-      creationDate: new Date(),
+      creationDate: new Date(2018, 1, 5),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: false
     }),
     new CourseItem({
       id: 4,
       title: 'AngularJS',
-      creationDate: new Date(),
+      creationDate: new Date(2018, 2, 1),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: true
     }),
     new CourseItem({
       id: 6,
       title: 'AngularJS',
-      creationDate: new Date(),
+      creationDate: new Date(2017, 1, 1),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: false
     }),
     new CourseItem({
       id: 5,
       title: 'AngularJS',
       creationDate: new Date(),
       additionalInfo: '98 min',
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla'
+      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
+      topRated: true
     })
   ];
 
-  constructor() {}
+  constructor() {
+    //  CoursesService.coursesCollection = [];
+  }
 
   public GetCourses(): Observable<CourseItem[]> {
     return of(CoursesService.coursesCollection);

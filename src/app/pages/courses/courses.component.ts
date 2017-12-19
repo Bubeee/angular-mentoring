@@ -28,4 +28,8 @@ export class CoursesComponent implements OnInit {
     console.log(`deleted id is: ${id}`);
     this._courseService.RemoveItem(id);
   }
+
+  hasNoCourses(): boolean {
+    return this.courseList.length === 0;
+  }
 }

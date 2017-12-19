@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ConfirmationDialogComponent } from './shared-components/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
+import { FreshCourseDirective } from './directives/attribute-directives/fresh-course.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation
     SearchableItemComponent,
     CoursesComponent,
     LoginComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    FreshCourseDirective
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
   providers: [AuthorizationService, ConfirmaitonDialogOverlayService],

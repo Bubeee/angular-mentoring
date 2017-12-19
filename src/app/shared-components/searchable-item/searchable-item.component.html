@@ -1,9 +1,10 @@
-<div class="searchable-item">
+<div class="searchable-item" [appFreshCourse]="searchableItem.creationDate" [ngClass]="{'searchable-item__top-rated': searchableItem.topRated}">
   <div class="searchable-item__content">
     <div class="searchable-item__content__header">
-      <h3 class="searchable-item__content__header__title">{{searchableItem.title}}</h3>
+      <h3 class="searchable-item__content__header__title">{{searchableItem.title}}</h3> 
       <p class="searchable-item__content__header__additional-info">{{searchableItem.additionalInfo}}</p>
-      <p class="searchable-item__content__header__date">{{searchableItem.creationDate | date:'dd-MM-yy'}}</p>
+      <p class="searchable-item__content__header__date">{{searchableItem.creationDate | date:'dd-M-yyyy'}}</p>
+      <i *ngIf="searchableItem.topRated" class="material-icons searchable-item__content__header__top-rated">star</i>
     </div>
 
     <p class="searchable-item__content__description">{{searchableItem.description}}</p>
@@ -11,7 +12,7 @@
   </div>
 
   <div class="searchable-item__actions">
-      <button type="button" class="button searchable-item__button">Edit {{itemTitle}}</button>
-      <button type="button" class="button searchable-item__button" (click)="deleteItem(searchableItem)">Delete</button>
+    <button type="button" class="button searchable-item__button">Edit {{itemTitle}}</button>
+    <button type="button" class="button searchable-item__button" (click)="deleteItem(searchableItem)">Delete</button>
   </div>
 </div>

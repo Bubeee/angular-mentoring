@@ -2,3 +2,10 @@
   margin: 0 auto;
   width: 65%;
 }
+
+.course-component__no-courses{
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid sienna;
+  padding: 20px;
+}
