@@ -16,6 +16,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ConfirmationDialogComponent } from './shared-components/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
 import { FreshCourseDirective } from './directives/attribute-directives/fresh-course.directive';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FreshCourseDirective } from './directives/attribute-directives/fresh-co
     CoursesComponent,
     LoginComponent,
     ConfirmationDialogComponent,
-    FreshCourseDirective
+    FreshCourseDirective,
+    OrderByPipe,
+    DurationPipe
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
   providers: [AuthorizationService, ConfirmaitonDialogOverlayService],

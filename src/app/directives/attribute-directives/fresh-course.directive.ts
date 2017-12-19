@@ -11,9 +11,11 @@ export class FreshCourseDirective implements OnInit {
 
   ngOnInit(): void {
     const currentDate = new Date();
+    const twoWeeksBefore = new Date();
+    twoWeeksBefore.setDate(currentDate.getDate() - 14);
     if (
-      currentDate < this.createdDate &&
-      this.createdDate.getDate() >= currentDate.getDate() - 14
+      currentDate > this.createdDate &&
+      this.createdDate >= twoWeeksBefore
     ) {
       this.element.nativeElement.style.borderColor = 'green';
     } else if (this.createdDate > currentDate) {

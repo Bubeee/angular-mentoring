@@ -11,7 +11,7 @@ export class CoursesService {
       id: 1,
       title: 'AngularJS',
       creationDate: new Date(2019, 1, 1),
-      additionalInfo: '98 min',
+      additionalInfo: 98,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
@@ -19,23 +19,23 @@ export class CoursesService {
       id: 2,
       title: 'AngularJS',
       creationDate: new Date(2018, 1, 1),
-      additionalInfo: '98 min',
+      additionalInfo: 44,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
     new CourseItem({
       id: 3,
       title: 'AngularJS',
-      creationDate: new Date(2018, 1, 5),
-      additionalInfo: '98 min',
+      creationDate: new Date(2018, 1, 1),
+      additionalInfo: 125,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: false
     }),
     new CourseItem({
       id: 4,
       title: 'AngularJS',
-      creationDate: new Date(2018, 2, 1),
-      additionalInfo: '98 min',
+      creationDate: new Date(2017, 11, 18),
+      additionalInfo: 240,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
@@ -43,15 +43,15 @@ export class CoursesService {
       id: 6,
       title: 'AngularJS',
       creationDate: new Date(2017, 1, 1),
-      additionalInfo: '98 min',
+      additionalInfo: 23,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: false
     }),
     new CourseItem({
       id: 5,
       title: 'AngularJS',
-      creationDate: new Date(),
-      additionalInfo: '98 min',
+      creationDate: new Date(2017, 11, 14),
+      additionalInfo: 777,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     })

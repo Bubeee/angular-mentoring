@@ -2,7 +2,7 @@ export class SearchableItemDto {
   public id: number;
   public title: string;
   public creationDate: Date;
-  public additionalInfo: string;
+  public additionalInfo: number;
   public description: string;
   public topRated: boolean;
 }
@@ -11,7 +11,7 @@ export abstract class SearchableItem implements SearchableItemDto {
   public id: number;
   public title: string;
   public creationDate: Date;
-  public additionalInfo: string;
+  public additionalInfo: number;
   public description: string;
   public topRated: boolean;
 
