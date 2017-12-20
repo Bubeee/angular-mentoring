@@ -11,47 +11,47 @@ export class CoursesService {
       id: 1,
       title: 'AngularJS',
       creationDate: new Date(2019, 1, 1),
-      additionalInfo: 98,
+      duration: 98,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
     new CourseItem({
       id: 2,
-      title: 'AngularJS',
+      title: 'Angular 2',
       creationDate: new Date(2018, 1, 1),
-      additionalInfo: 44,
+      duration: 44,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
     new CourseItem({
       id: 3,
-      title: 'AngularJS',
+      title: 'KnockoutJS',
       creationDate: new Date(2018, 1, 1),
-      additionalInfo: 125,
+      duration: 125,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: false
     }),
     new CourseItem({
       id: 4,
-      title: 'AngularJS',
+      title: 'Backbone',
       creationDate: new Date(2017, 11, 18),
-      additionalInfo: 240,
+      duration: 240,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     }),
     new CourseItem({
       id: 6,
-      title: 'AngularJS',
+      title: 'Marionette',
       creationDate: new Date(2017, 1, 1),
-      additionalInfo: 23,
+      duration: 23,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: false
     }),
     new CourseItem({
       id: 5,
-      title: 'AngularJS',
+      title: 'React',
       creationDate: new Date(2017, 11, 14),
-      additionalInfo: 777,
+      duration: 777,
       description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
       topRated: true
     })
@@ -78,7 +78,7 @@ export class CoursesService {
       course => course.id === id
     );
 
-    updatingCourse.additionalInfo = courseItem.additionalInfo;
+    updatingCourse.duration = courseItem.duration;
     updatingCourse.creationDate = courseItem.creationDate;
     updatingCourse.description = courseItem.description;
     updatingCourse.title = courseItem.title;

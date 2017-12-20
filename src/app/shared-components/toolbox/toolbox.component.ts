@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,11 +12,13 @@ export class ToolboxComponent implements OnInit {
   @Input()
   itemTitle: string;
 
+  @Output() onSearch = new EventEmitter<string>();
+
   constructor() {}
 
   ngOnInit() {}
 
-  onSearch() {
-    console.log(this.searchString);
+  search() {
+    this.onSearch.emit(this.searchString);
   }
 }

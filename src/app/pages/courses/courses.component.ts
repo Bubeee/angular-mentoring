@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseItem } from './course-item';
 import { CoursesService } from './courses.service';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-courses-page',
@@ -10,6 +11,7 @@ import { CoursesService } from './courses.service';
 })
 export class CoursesComponent implements OnInit {
   private courseList: CourseItem[];
+  private initialCourseList: CourseItem[];
   itemTitle = 'Course';
 
   ngOnInit(): void {
@@ -19,14 +21,18 @@ export class CoursesComponent implements OnInit {
   private getCourses() {
     this._courseService
       .GetCourses()
-      .subscribe(courses => this.courseList = courses);
+      .subscribe(courses => this.courseList = this.initialCourseList = courses);
   }
 
-  constructor(private _courseService: CoursesService) {}
+  constructor(private _courseService: CoursesService, private _searchPipe: SearchPipe) {}
 
   onDelete(id: number) {
     console.log(`deleted id is: ${id}`);
     this._courseService.RemoveItem(id);
+  }
+
+  onSearch(searchString: string) {
+    this.courseList = this._searchPipe.transform(this.initialCourseList, searchString);
   }
 
   hasNoCourses(): boolean {

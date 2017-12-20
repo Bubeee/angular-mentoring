@@ -18,6 +18,7 @@ import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation
 import { FreshCourseDirective } from './directives/attribute-directives/fresh-course.directive';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,11 @@ import { DurationPipe } from './pipes/duration.pipe';
     ConfirmationDialogComponent,
     FreshCourseDirective,
     OrderByPipe,
-    DurationPipe
+    DurationPipe,
+    SearchPipe
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
-  providers: [AuthorizationService, ConfirmaitonDialogOverlayService],
+  providers: [AuthorizationService, ConfirmaitonDialogOverlayService, SearchPipe],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent]
 })

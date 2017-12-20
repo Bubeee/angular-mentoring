@@ -25,10 +25,15 @@
 
 .searchable-item__content__header__top-rated{
   color: gold;
+  margin-left:20px; 
+}
+
+.searchable-item__content__header__additional-info{
+  width: 15%;
 }
 
 .searchable-item__content__header__date{
-  margin-left: 10%;
+  margin-left: 20px;
   width: 10%;
 }
 

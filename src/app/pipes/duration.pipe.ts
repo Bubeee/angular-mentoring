@@ -6,8 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
   transform(value: number): string {
-    const valueAsDate = new Date(0, 0, 0, 0, value, 0, 0);
-    return valueAsDate.toString(); // 'hh h mm min.'
+    if (value > 59) {
+      return `${Math.floor(value / 60)} h ${(value % 60)} min`;
+    } else {
+      return `${(value % 60)} min`;
+    }
   }
-
 }
