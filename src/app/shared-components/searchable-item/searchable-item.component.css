@@ -18,7 +18,7 @@
 }
 
 .searchable-item__content__header__title{
-  width: 60%;
+  width: 50%;
   margin-right: 10px;
   margin-top: 10px
 }
@@ -29,12 +29,11 @@
 }
 
 .searchable-item__content__header__additional-info{
-  width: 15%;
+  width: 100px;
 }
 
 .searchable-item__content__header__date{
   margin-left: 20px;
-  width: 10%;
 }
 
 .searchable-item__content__description{
