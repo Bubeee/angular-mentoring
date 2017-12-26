@@ -1,11 +1,11 @@
 import { Directive, Input, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[appFreshCourse]'
+  selector: '[appFreshItem]'
 })
-export class FreshCourseDirective implements OnInit {
+export class FreshItemDirective implements OnInit {
   // tslint:disable-next-line:no-input-rename
-  @Input('appFreshCourse') createdDate: Date;
+  @Input('appFreshItem') createdDate: Date;
 
   constructor(private element: ElementRef) {}
 

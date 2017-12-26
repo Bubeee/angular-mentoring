@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ConfirmationDialogComponent } from './shared-components/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
-import { FreshCourseDirective } from './directives/attribute-directives/fresh-course.directive';
+import { FreshItemDirective } from './directives/attribute-directives/fresh-item.directive';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { SearchPipe } from './pipes/search.pipe';
@@ -31,7 +31,7 @@ import { SearchPipe } from './pipes/search.pipe';
     CoursesComponent,
     LoginComponent,
     ConfirmationDialogComponent,
-    FreshCourseDirective,
+    FreshItemDirective,
     OrderByPipe,
     DurationPipe,
     SearchPipe

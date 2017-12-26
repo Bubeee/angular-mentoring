@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { SearchableItem } from './searchable-item';
 import { ConfirmaitonDialogOverlayService } from '../../shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
 
 @Component({
   selector: 'app-searchable-item',
   templateUrl: './searchable-item.component.html',
-  styleUrls: ['./searchable-item.component.css']
+  styleUrls: ['./searchable-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchableItemComponent implements OnInit {
   @Input() searchableItem: SearchableItem;

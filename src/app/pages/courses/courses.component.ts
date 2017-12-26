@@ -10,7 +10,7 @@ import { SearchPipe } from '../../pipes/search.pipe';
   providers: [CoursesService]
 })
 export class CoursesComponent implements OnInit {
-  private courseList: CourseItem[];
+  public courseList: CourseItem[];
   private initialCourseList: CourseItem[];
   itemTitle = 'Course';
 
