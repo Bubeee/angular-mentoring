@@ -1,0 +1,34 @@
+<div class="container">
+  <form class="course__form">
+    <fieldset class="course__form__fieldset">
+      <label class="course__form__label" for="title">Title</label>
+      <input class="course__form__input" type="text" name="title" />
+    </fieldset>
+
+    <fieldset class="course__form__fieldset">
+      <label class="course__form__label" for="description">Description</label>
+      <textarea class="course__form__input" name="description"></textarea>
+    </fieldset>
+
+    <fieldset class="course__form__fieldset">
+      <label class="course__form__label" for="date">Date</label>
+      <input class="course__form__input" type="date" name="date" />
+    </fieldset>
+
+    <fieldset class="course__form__fieldset">
+      <label class="course__form__label" for="duration">Duration</label>
+      <input class="course__form__input" type="number" name="duration" [(ngModel)]="course.duration"/>
+      <p>{{course.duration | duration}}</p>
+    </fieldset>
+
+    <fieldset class="course__form__fieldset">
+      <label class="course__form__label" for="authors">Authors</label>
+      <input class="course__form__input" type="text" name="authors" />
+    </fieldset>
+
+    <div class="form__controls">
+      <button type="button" class="button__form" (click)="save()">Save</button>
+      <button type="button" class="button__form" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

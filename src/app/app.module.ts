@@ -19,6 +19,7 @@ import { FreshItemDirective } from './directives/attribute-directives/fresh-item
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { SearchPipe } from './pipes/search.pipe';
+import { CourseComponent } from './pages/course/course.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SearchPipe } from './pipes/search.pipe';
     FreshItemDirective,
     OrderByPipe,
     DurationPipe,
-    SearchPipe
+    SearchPipe,
+    CourseComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
   providers: [AuthorizationService, ConfirmaitonDialogOverlayService, SearchPipe],

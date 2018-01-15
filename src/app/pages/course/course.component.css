@@ -1,0 +1,38 @@
+.container{
+  margin: 20px;
+}
+
+.course__form{
+  margin: 0 auto;
+  width: 45%;
+}
+
+.course__form__fieldset{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.course__form__label{
+  width: 80px;
+  margin-right: 10px;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.course__form__input{
+  display: inline-block;
+  width: 200px;
+}
+
+.form__controls{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button__form{
+  margin: 10px;
+  width: 100px;
+
+}
