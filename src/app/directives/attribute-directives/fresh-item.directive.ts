@@ -5,7 +5,7 @@ import { Directive, Input, ElementRef, OnInit } from '@angular/core';
 })
 export class FreshItemDirective implements OnInit {
   // tslint:disable-next-line:no-input-rename
-  @Input('appFreshItem') createdDate: Date;
+  @Input('appFreshItem') date: Date;
 
   constructor(private element: ElementRef) {}
 
@@ -14,11 +14,11 @@ export class FreshItemDirective implements OnInit {
     const twoWeeksBefore = new Date();
     twoWeeksBefore.setDate(currentDate.getDate() - 14);
     if (
-      currentDate > this.createdDate &&
-      this.createdDate >= twoWeeksBefore
+      currentDate > this.date &&
+      this.date >= twoWeeksBefore
     ) {
       this.element.nativeElement.style.borderColor = 'green';
-    } else if (this.createdDate > currentDate) {
+    } else if (this.date > currentDate) {
       this.element.nativeElement.style.borderColor = 'blue';
     }
   }

@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CourseItem } from './course-item';
 import { CoursesService } from './courses.service';
 import { SearchPipe } from '../../pipes/search.pipe';
+import { ISubscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import {
+  SearchableItemDto,
+  SearchableItem
+} from '../../shared-components/searchable-item/searchable-item';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-courses-page',
@@ -9,33 +17,48 @@ import { SearchPipe } from '../../pipes/search.pipe';
   styleUrls: ['./courses.component.css'],
   providers: [CoursesService]
 })
-export class CoursesComponent implements OnInit {
-  public courseList: CourseItem[];
-  private initialCourseList: CourseItem[];
+export class CoursesComponent implements OnInit, OnDestroy {
+  private courseList: Observable<CourseItem[]>;
+  public filteredCourseList: Observable<CourseItem[]>;
+
+  private courseListSubscribtions: ISubscription[] = new Array<ISubscription>();
+
   itemTitle = 'Course';
 
   ngOnInit(): void {
-    this.getCourses();
+    this.courseList = this.filteredCourseList = this._courseService.courses.map(
+      courses =>
+        courses.filter(course => {
+          const twoWeeksBefore = new Date();
+          twoWeeksBefore.setDate(twoWeeksBefore.getDate() - 14);
+          if (course.date >= twoWeeksBefore) {
+            return true;
+          }
+
+          return false;
+        })
+    );
+    this._courseService.LoadCourses();
   }
 
-  private getCourses() {
-    this._courseService
-      .GetCourses()
-      .subscribe(courses => this.courseList = this.initialCourseList = courses);
-  }
+  ngOnDestroy(): void {}
 
-  constructor(private _courseService: CoursesService, private _searchPipe: SearchPipe) {}
+  constructor(
+    private _courseService: CoursesService,
+    private _searchPipe: SearchPipe
+  ) {}
 
   onDelete(id: number) {
-    console.log(`deleted id is: ${id}`);
     this._courseService.RemoveItem(id);
   }
 
   onSearch(searchString: string) {
-    this.courseList = this._searchPipe.transform(this.initialCourseList, searchString);
+    this.filteredCourseList = this.courseList.map(courses => {
+      return this._searchPipe.transform(courses, searchString);
+    });
   }
 
   hasNoCourses(): boolean {
-    return this.courseList.length === 0;
+    return this._courseService.GetCoursesCount() === 0;
   }
 }

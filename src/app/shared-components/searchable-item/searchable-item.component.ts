@@ -12,18 +12,18 @@ export class SearchableItemComponent implements OnInit {
   @Input() searchableItem: SearchableItem;
   @Input() itemTitle: string;
 
-  @Output() onDelete = new EventEmitter<SearchableItem>();
+  @Output() onDelete = new EventEmitter<number>();
 
   constructor(private deleteDialog: ConfirmaitonDialogOverlayService) {}
 
   delete(item: SearchableItem) {
-    this.onDelete.emit(item);
+    this.onDelete.emit(item.id);
   }
 
   deleteItem(item: SearchableItem) {
     const dialogRef = this.deleteDialog.open({ data: item });
     dialogRef.onDelete.subscribe(() => {
-      this.onDelete.emit(item);
+      this.onDelete.emit(item.id);
     });
   }
 

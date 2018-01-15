@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class AuthorizationService {
+  public logins: ReplaySubject<string> = new ReplaySubject();
+
   constructor() {}
   public Login(name: string, password: string) {
     localStorage.setItem('currentLogin', name);
     localStorage.setItem('currentToken', this.GenerateToken(password));
+    this.logins.next(name);
   }
 
   public Logout() {
     localStorage.setItem('currentLogin', '');
     localStorage.setItem('currentToken', '');
+    this.logins.next('');
   }
 
   public IsAuthenticated(): boolean {

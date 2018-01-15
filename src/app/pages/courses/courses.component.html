@@ -1,7 +1,7 @@
 <div class="course-component__container">
   <app-toolbox [itemTitle]="itemTitle" (onSearch)="onSearch($event)"></app-toolbox>
 
-  <div *ngFor="let course of courseList | orderBy: 'creationDate'">
+  <div *ngFor="let course of filteredCourseList | async | orderBy: 'creationDate'">
     <app-searchable-item [searchableItem]="course" [itemTitle]="itemTitle" (onDelete)="onDelete($event)"></app-searchable-item>
   </div>
 
