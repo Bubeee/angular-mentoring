@@ -20,6 +20,9 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import { CourseComponent } from './pages/course/course.component';
+import { PickerComponent } from './shared-components/picker/picker.component';
+import { DurationInputComponent } from './shared-components/duration-input/duration-input.component';
+import { DateInputComponent } from './shared-components/date-input/date-input.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { CourseComponent } from './pages/course/course.component';
     OrderByPipe,
     DurationPipe,
     SearchPipe,
-    CourseComponent
+    CourseComponent,
+    PickerComponent,
+    DurationInputComponent,
+    DateInputComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
   providers: [AuthorizationService, ConfirmaitonDialogOverlayService, SearchPipe],

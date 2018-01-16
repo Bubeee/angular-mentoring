@@ -39,7 +39,11 @@ export class HeaderComponent implements OnInit {
 
   private fetchUserInfo() {
     if (this.isAuthenticated()) {
-      this.currentUserName = this._authorizationService.GetUserInfo();
+      this._authorizationService.logins.subscribe(
+        login => (this.currentUserName = login)
+      );
+
+      this._authorizationService.GetUserInfo();
     }
   }
 }

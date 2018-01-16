@@ -12,18 +12,18 @@
 
     <fieldset class="course__form__fieldset">
       <label class="course__form__label" for="date">Date</label>
-      <input class="course__form__input" type="date" name="date" />
+
+      <app-date-input></app-date-input>
     </fieldset>
 
     <fieldset class="course__form__fieldset">
       <label class="course__form__label" for="duration">Duration</label>
-      <input class="course__form__input" type="number" name="duration" [(ngModel)]="course.duration"/>
-      <p>{{course.duration | duration}}</p>
+      <app-duration-input [duration]="course.duration"></app-duration-input>
     </fieldset>
 
     <fieldset class="course__form__fieldset">
       <label class="course__form__label" for="authors">Authors</label>
-      <input class="course__form__input" type="text" name="authors" />
+      <app-picker></app-picker>
     </fieldset>
 
     <div class="form__controls">
