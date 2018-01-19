@@ -4,16 +4,20 @@ import {
   SearchableItemDto
 } from '../../shared-components/searchable-item/searchable-item';
 import { CourseItem } from '../courses/course-item';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  selector: 'app-edit-course',
+  templateUrl: './edit-course.component.html',
+  styleUrls: ['./edit-course.component.css']
 })
-export class CourseComponent implements OnInit {
+export class EditCourseComponent implements OnInit {
   course: SearchableItem;
+  courseId: number;
 
-  constructor() {}
+  constructor(route: ActivatedRoute) {
+    this.courseId = route.snapshot.params['id'];
+  }
 
   ngOnInit() {
     const dto = new SearchableItemDto();

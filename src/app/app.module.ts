@@ -19,10 +19,11 @@ import { FreshItemDirective } from './directives/attribute-directives/fresh-item
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { SearchPipe } from './pipes/search.pipe';
-import { CourseComponent } from './pages/course/course.component';
+import { EditCourseComponent } from './pages/edit-course/edit-course.component';
 import { PickerComponent } from './shared-components/picker/picker.component';
 import { DurationInputComponent } from './shared-components/duration-input/duration-input.component';
 import { DateInputComponent } from './shared-components/date-input/date-input.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -39,13 +40,23 @@ import { DateInputComponent } from './shared-components/date-input/date-input.co
     OrderByPipe,
     DurationPipe,
     SearchPipe,
-    CourseComponent,
+    EditCourseComponent,
     PickerComponent,
     DurationInputComponent,
     DateInputComponent
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule, OverlayModule],
-  providers: [AuthorizationService, ConfirmaitonDialogOverlayService, SearchPipe],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    OverlayModule,
+    HttpModule
+  ],
+  providers: [
+    AuthorizationService,
+    ConfirmaitonDialogOverlayService,
+    SearchPipe
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent]
 })

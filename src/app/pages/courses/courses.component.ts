@@ -10,6 +10,7 @@ import {
 } from '../../shared-components/searchable-item/searchable-item';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-page',
@@ -45,11 +46,16 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
   constructor(
     private _courseService: CoursesService,
-    private _searchPipe: SearchPipe
+    private _searchPipe: SearchPipe,
+    private router: Router
   ) {}
 
   onDelete(id: number) {
     this._courseService.RemoveItem(id);
+  }
+
+  onEdit(id: number) {
+    this.router.navigate(['./edit-course', id]);
   }
 
   onSearch(searchString: string) {

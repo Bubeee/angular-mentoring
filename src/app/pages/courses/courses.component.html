@@ -2,7 +2,7 @@
   <app-toolbox [itemTitle]="itemTitle" (onSearch)="onSearch($event)"></app-toolbox>
 
   <div *ngFor="let course of filteredCourseList | async | orderBy: 'creationDate'">
-    <app-searchable-item [searchableItem]="course" [itemTitle]="itemTitle" (onDelete)="onDelete($event)"></app-searchable-item>
+    <app-searchable-item [searchableItem]="course" [itemTitle]="itemTitle" (onDelete)="onDelete($event)" (onEdit)="onEdit($event)"></app-searchable-item>
   </div>
 
   <div class="course-component__no-courses" *ngIf="hasNoCourses()">
