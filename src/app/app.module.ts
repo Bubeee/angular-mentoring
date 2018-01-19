@@ -7,7 +7,7 @@ import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { ToolboxComponent } from './shared-components/toolbox/toolbox.component';
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
-import { CoursesComponent } from './pages/courses/courses.component';
+import { CoursesComponent } from './pages/courses/courses-list/courses.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthorizationService } from './shared-services/authorization/authorization.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,11 +19,12 @@ import { FreshItemDirective } from './directives/attribute-directives/fresh-item
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { DurationPipe } from './pipes/duration.pipe';
 import { SearchPipe } from './pipes/search.pipe';
-import { EditCourseComponent } from './pages/edit-course/edit-course.component';
+import { EditCourseComponent } from './pages/courses/edit-course/edit-course.component';
 import { PickerComponent } from './shared-components/picker/picker.component';
 import { DurationInputComponent } from './shared-components/duration-input/duration-input.component';
 import { DateInputComponent } from './shared-components/date-input/date-input.component';
 import { HttpModule } from '@angular/http';
+import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpModule } from '@angular/http';
     EditCourseComponent,
     PickerComponent,
     DurationInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,

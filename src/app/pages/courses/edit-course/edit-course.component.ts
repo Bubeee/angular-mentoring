@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import {
   SearchableItem,
   SearchableItemDto
-} from '../../shared-components/searchable-item/searchable-item';
-import { CourseItem } from '../courses/course-item';
-import { ActivatedRoute } from '@angular/router';
+} from '../../../shared-components/searchable-item/searchable-item';
+import { CourseItem } from '../courses-list/course-item';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-course',
@@ -15,7 +15,7 @@ export class EditCourseComponent implements OnInit {
   course: SearchableItem;
   courseId: number;
 
-  constructor(route: ActivatedRoute) {
+  constructor(private router: Router, route: ActivatedRoute) {
     this.courseId = route.snapshot.params['id'];
   }
 
@@ -29,5 +29,7 @@ export class EditCourseComponent implements OnInit {
 
   save() {}
 
-  cancel() {}
+  cancel() {
+    this.router.navigate(['courses']);
+  }
 }

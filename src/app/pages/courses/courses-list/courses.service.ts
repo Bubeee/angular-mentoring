@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from './course-item';
-import { SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
+import { SearchableItemDto } from '../../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';

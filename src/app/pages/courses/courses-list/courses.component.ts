@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CourseItem } from './course-item';
 import { CoursesService } from './courses.service';
-import { SearchPipe } from '../../pipes/search.pipe';
+import { SearchPipe } from '../../../pipes/search.pipe';
 import { ISubscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import {
   SearchableItemDto,
   SearchableItem
-} from '../../shared-components/searchable-item/searchable-item';
+} from '../../../shared-components/searchable-item/searchable-item';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { Router } from '@angular/router';
