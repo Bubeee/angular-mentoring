@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchableItem, SearchableItemDto } from '../../../shared-components/searchable-item/searchable-item';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CourseItem } from '../courses-list/course-item';
 
 @Component({
   selector: 'app-add-course',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
+  course: SearchableItem;
+  courseId: number;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private router: Router, route: ActivatedRoute) {
+    this.courseId = route.snapshot.params['id'];
   }
 
+  ngOnInit() {
+    const dto = new SearchableItemDto();
+    dto.duration = 30;
+    dto.date = new Date();
+
+    this.course = new CourseItem(dto);
+  }
+
+  save() {}
+
+  cancel() {
+    this.router.navigate(['courses']);
+  }
 }

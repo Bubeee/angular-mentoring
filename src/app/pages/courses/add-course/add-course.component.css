@@ -1,0 +1,43 @@
+.container{
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 80%;
+  margin: auto;
+
+  margin-top: 20%;
+  border-radius: 5px;
+}
+
+.course__form__form-group{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+  width: 100%;
+}
+
+.form__buttons{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button__form{
+  margin: 10px;
+  width: 100px;
+
+}
+
+.course__form__button{
+  height: 30px;
+  width: 150px;
+  border: 1px solid #000;
+  margin-top: 10px;
+}

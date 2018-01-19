@@ -13,6 +13,7 @@ export class ToolboxComponent implements OnInit {
   itemTitle: string;
 
   @Output() onSearch = new EventEmitter<string>();
+  @Output() onAdd = new EventEmitter<void>();
 
   constructor() {}
 
@@ -20,5 +21,9 @@ export class ToolboxComponent implements OnInit {
 
   search() {
     this.onSearch.emit(this.searchString);
+  }
+
+  add() {
+    this.onAdd.emit();
   }
 }

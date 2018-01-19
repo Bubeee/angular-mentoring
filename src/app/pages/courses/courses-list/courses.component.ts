@@ -58,6 +58,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
     this.router.navigate(['./edit-course', id]);
   }
 
+  onAdd() {
+    this.router.navigate(['./add-course']);
+  }
+
   onSearch(searchString: string) {
     this.filteredCourseList = this.courseList.map(courses => {
       return this._searchPipe.transform(courses, searchString);
