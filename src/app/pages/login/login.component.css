@@ -20,6 +20,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 10px;
+  width: 100%;
 }
 
 .login-from__label {
@@ -39,8 +40,4 @@
   width: 150px;
   border: 1px solid #000;
   margin-top: 10px;
-}
-
-.login-form__form-group {
-  width: 100%;
 }

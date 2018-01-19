@@ -24,3 +24,22 @@ html{
     background: #000;
     opacity: 0.85 !important;
 }
+
+.course__form__label{  
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #333;
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+}
+
+.course__form__label{
+  width: 30%;
+  margin-right: 10px;
+}
+
+.course__form__input{
+  display: inline-block;
+  width: 200px;
+}
