@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchableItem } from '../shared-components/searchable-item/searchable-item';
+import { SearchableItem } from '../../shared-components/searchable-item/searchable-item';
 
 @Pipe({
   name: 'search'
