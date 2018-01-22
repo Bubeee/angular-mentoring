@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchableItem, SearchableItemDto } from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseItem } from '../courses-list/course-item';
+import { CourseItem } from '../course-item';
 
 @Component({
   selector: 'app-add-course',

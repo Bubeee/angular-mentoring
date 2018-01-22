@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CourseItem } from './course-item';
-import { CoursesService } from './courses.service';
+import { CourseItem } from '../course-item';
+import { CoursesService } from '../courses.service';
 import { SearchPipe } from '../../../common/pipes/search.pipe';
 import { ISubscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';

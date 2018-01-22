@@ -3,7 +3,7 @@ import {
   SearchableItem,
   SearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
-import { CourseItem } from '../courses-list/course-item';
+import { CourseItem } from '../course-item';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
