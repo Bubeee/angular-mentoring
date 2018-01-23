@@ -69,5 +69,30 @@ export class CoursesService {
 
   }
 
-  public RemoveItem(id: number) {}
+  public RemoveItem(id: number): Observable<Course[]> {
+    const requestOptions = new RequestOptions();
+    let request: Request;
+
+    requestOptions.url = `${environment.apiEndpoints.api}/courses/${id}`;
+    requestOptions.method = RequestMethod.Delete;
+
+    request = new Request(requestOptions);
+
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json())
+      .map(courses =>
+        courses.map((item: CourseDto) => {
+          const searchableItem = new SearchableItemDto();
+          searchableItem.date = item.date;
+          searchableItem.description = item.description;
+          searchableItem.duration = item.length;
+          searchableItem.id = item.id;
+          searchableItem.title = item.name;
+          searchableItem.topRated = item.isTopRated;
+
+          return new Course(searchableItem);
+        })
+      );
+  }
 }

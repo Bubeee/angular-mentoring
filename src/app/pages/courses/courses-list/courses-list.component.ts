@@ -36,7 +36,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   ) {}
 
   onDelete(id: number) {
-    this._courseService.RemoveItem(id);
+    this.courses = this._courseService.RemoveItem(id);
   }
 
   onEdit(id: number) {
