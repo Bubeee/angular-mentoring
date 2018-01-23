@@ -71,13 +71,17 @@ export class CoursesService {
 
   public RemoveItem(id: number) {
     const requestOptions = new RequestOptions();
+    const urlParams: URLSearchParams = new URLSearchParams();
     let request: Request;
 
     requestOptions.url = `${environment.apiEndpoints.api}/courses/${id}`;
     requestOptions.method = RequestMethod.Delete;
+    requestOptions.params = urlParams;
 
     request = new Request(requestOptions);
 
-    return this._http.request(request).map(response => console.log(response));
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json());
   }
 }
