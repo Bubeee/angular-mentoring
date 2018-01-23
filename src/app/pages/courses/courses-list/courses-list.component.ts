@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CourseItem } from '../course-item';
+import { Course } from '../course-item';
 import { CoursesService } from '../courses.service';
 import { SearchPipe } from '../../../common/pipes/search.pipe';
 import { ISubscription } from 'rxjs/Subscription';
@@ -13,33 +13,18 @@ import 'rxjs/add/operator/filter';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-courses-page',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css'],
+  selector: 'app-courses-list',
+  templateUrl: './courses-list.component.html',
+  styleUrls: ['./courses-list.component.css'],
   providers: [CoursesService]
 })
-export class CoursesComponent implements OnInit, OnDestroy {
-  private courseList: Observable<CourseItem[]>;
-  public filteredCourseList: Observable<CourseItem[]>;
-
-  private courseListSubscribtions: ISubscription[] = new Array<ISubscription>();
-
+export class CoursesListComponent implements OnInit, OnDestroy {
+  public courses: Observable<Course[]>;
+  private coursesLoaded = 3;
   itemTitle = 'Course';
 
   ngOnInit(): void {
-    this.courseList = this.filteredCourseList = this._courseService.courses.map(
-      courses =>
-        courses.filter(course => {
-          const twoWeeksBefore = new Date();
-          twoWeeksBefore.setDate(twoWeeksBefore.getDate() - 14);
-          if (course.date >= twoWeeksBefore) {
-            return true;
-          }
-
-          return false;
-        })
-    );
-    this._courseService.LoadCourses();
+    this.courses = this._courseService.SearchCourses('', 0, this.coursesLoaded);
   }
 
   ngOnDestroy(): void {}
@@ -63,12 +48,15 @@ export class CoursesComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchString: string) {
-    this.filteredCourseList = this.courseList.map(courses => {
-      return this._searchPipe.transform(courses, searchString);
-    });
+    this.courses = this._courseService.SearchCourses(searchString, 0, this.coursesLoaded);
+  }
+
+  load() {
+    this.coursesLoaded += 3;
+    this.courses = this._courseService.SearchCourses('', 0, this.coursesLoaded);
   }
 
   hasNoCourses(): boolean {
-    return this._courseService.GetCoursesCount() === 0;
+    return true;
   }
 }

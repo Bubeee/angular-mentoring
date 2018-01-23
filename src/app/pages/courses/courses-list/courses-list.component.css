@@ -1,0 +1,21 @@
+.course-component__container{
+  margin: 0 auto;
+  width: 65%;
+}
+
+.course-component__no-courses{
+  font-size: 24px;
+  text-align: center;
+  border: 2px solid sienna;
+  padding: 20px;
+}
+.course-component__load-button-container{
+  text-align: center;
+  padding: 20px;  
+}
+.course-component__load-more-button{
+  height: 30px;
+  width: 150px;
+  border: 1px solid #000;
+  margin-top: 10px;
+}

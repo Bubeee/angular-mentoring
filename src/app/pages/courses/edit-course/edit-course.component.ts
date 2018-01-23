@@ -3,7 +3,7 @@ import {
   SearchableItem,
   SearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
-import { CourseItem } from '../course-item';
+import { Course } from '../course-item';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class EditCourseComponent implements OnInit {
     dto.duration = 30;
     dto.date = new Date();
 
-    this.course = new CourseItem(dto);
+    this.course = new Course(dto);
   }
 
   save() {}

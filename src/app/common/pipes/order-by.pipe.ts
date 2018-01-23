@@ -5,9 +5,12 @@ import { SearchableItem } from '../../shared-components/searchable-item/searchab
   name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
-
   transform(value: SearchableItem[], sortBy: string, args?: any): any {
-    const filteredArray = value.sort((a, b) => a[sortBy] > b[sortBy] ? 1 : 0);
+    if (value == null) {
+      return value;
+    }
+
+    const filteredArray = value.sort((a, b) => (a[sortBy] > b[sortBy] ? 1 : 0));
     return filteredArray;
   }
 }

@@ -7,7 +7,7 @@ import { HeaderComponent } from './shared-components/header/header.component';
 import { FooterComponent } from './shared-components/footer/footer.component';
 import { ToolboxComponent } from './shared-components/toolbox/toolbox.component';
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
-import { CoursesComponent } from './pages/courses/courses-list/courses.component';
+import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthorizationService } from './shared-services/authorization/authorization.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,12 +29,12 @@ import { AddCourseComponent } from './pages/courses/add-course/add-course.compon
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
+    CoursesListComponent,
     HeaderComponent,
     FooterComponent,
     ToolboxComponent,
     SearchableItemComponent,
-    CoursesComponent,
+    CoursesListComponent,
     LoginComponent,
     ConfirmationDialogComponent,
     FreshItemDirective,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchableItem, SearchableItemDto } from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseItem } from '../course-item';
+import { Course } from '../course-item';
 
 @Component({
   selector: 'app-add-course',
@@ -21,7 +21,7 @@ export class AddCourseComponent implements OnInit {
     dto.duration = 30;
     dto.date = new Date();
 
-    this.course = new CourseItem(dto);
+    this.course = new Course(dto);
   }
 
   save() {}

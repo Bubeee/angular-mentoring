@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CoursesComponent } from './pages/courses/courses-list/courses.component';
+import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { EditCourseComponent } from './pages/courses/edit-course/edit-course.component';
 import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/courses', pathMatch: 'full' },
-    { path: 'courses', component: CoursesComponent },
+    { path: 'courses', component: CoursesListComponent },
     { path: 'login', component: LoginComponent },
     { path: 'edit-course/:id', component: EditCourseComponent },
     { path: 'add-course', component: AddCourseComponent },

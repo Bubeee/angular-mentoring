@@ -1,108 +1,73 @@
 import { Injectable } from '@angular/core';
-import { CourseItem } from './course-item';
+import { Course } from './course-item';
 import { SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/from';
+import {
+  Http,
+  Request,
+  Response,
+  RequestOptions,
+  RequestMethod,
+  URLSearchParams
+} from '@angular/http';
+import { environment } from '../../../environments/environment';
+
+class CourseDto {
+  id: number;
+  name: string;
+  description: string;
+  isTopRated: boolean;
+  date: Date;
+  length: number;
+}
 
 @Injectable()
 export class CoursesService {
-  private static coursesCollection: CourseItem[] = [
-    new CourseItem({
-      id: 1,
-      title: 'AngularJS',
-      date: new Date(2019, 1, 1),
-      duration: 98,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: true
-    }),
-    new CourseItem({
-      id: 2,
-      title: 'Angular 2',
-      date: new Date(2018, 1, 1),
-      duration: 44,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: true
-    }),
-    new CourseItem({
-      id: 3,
-      title: 'KnockoutJS',
-      date: new Date(2018, 1, 1),
-      duration: 125,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: false
-    }),
-    new CourseItem({
-      id: 4,
-      title: 'Backbone',
-      date: new Date(2017, 11, 18),
-      duration: 240,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: true
-    }),
-    new CourseItem({
-      id: 6,
-      title: 'Marionette',
-      date: new Date(2017, 1, 1),
-      duration: 23,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: false
-    }),
-    new CourseItem({
-      id: 5,
-      title: 'React',
-      date: new Date(2017, 11, 14),
-      duration: 777,
-      description: 'Lorem, ipsumsd bla Lorem, ipsumsd bla Lorem, ipsumsd bla',
-      topRated: true
-    })
-  ];
+  constructor(private _http: Http) {}
 
-  public courses: Observable<CourseItem[]>;
-  private _courses: BehaviorSubject<CourseItem[]>;
+  public SearchCourses(
+    query: string,
+    skip: number = 0,
+    take: number = 15
+  ): Observable<Course[]> {
+    const requestOptions = new RequestOptions();
+    const urlParams: URLSearchParams = new URLSearchParams();
+    let request: Request;
 
-  constructor() {
-    this._courses = <BehaviorSubject<CourseItem[]>>new BehaviorSubject([]);
-    this.courses = this._courses.asObservable();
-  }
+    urlParams.set('start', skip.toString());
+    urlParams.set('count', take.toString());
+    urlParams.set('query', query);
 
-  public LoadCourses() {
-    this._courses.next(Object.assign({}, CoursesService).coursesCollection);
+    requestOptions.url = `${environment.apiEndpoints.api}/courses`;
+    requestOptions.method = RequestMethod.Get;
+    requestOptions.params = urlParams;
+
+    request = new Request(requestOptions);
+
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json())
+      .map(courses =>
+        courses.map((item: CourseDto) => {
+          const searchableItem = new SearchableItemDto();
+          searchableItem.date = item.date;
+          searchableItem.description = item.description;
+          searchableItem.duration = item.length;
+          searchableItem.id = item.id;
+          searchableItem.title = item.name;
+          searchableItem.topRated = item.isTopRated;
+
+          return new Course(searchableItem);
+        })
+      );
   }
 
   public CreateCourse(course: SearchableItemDto) {
-    CoursesService.coursesCollection.push(course);
-    this._courses.next(Object.assign({}, CoursesService).coursesCollection);
+
   }
 
-  public GetCourse(id: number): Observable<CourseItem> {
-    return Observable.from(
-      CoursesService.coursesCollection.filter(course => course.id === id)
-    );
-  }
-
-  public UpdateCourse(course: CourseItem) {
-    CoursesService.coursesCollection.forEach((c, i) => {
-      if (c.id === c.id) {
-        CoursesService.coursesCollection[i] = c;
-      }
-    });
-
-    this._courses.next(Object.assign({}, CoursesService).coursesCollection);
-  }
-
-  public RemoveItem(id: number) {
-    CoursesService.coursesCollection.forEach((c, i) => {
-      if (c.id === id) {
-        CoursesService.coursesCollection.splice(i, 1);
-      }
-    });
-
-    this._courses.next(Object.assign({}, CoursesService).coursesCollection);
-  }
-
-  public GetCoursesCount(): number {
-    return this._courses.getValue().length;
-  }
+  public RemoveItem(id: number) {}
 }

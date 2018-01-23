@@ -1,0 +1,16 @@
+<div class="course-component__container">
+  <app-toolbox [itemTitle]="itemTitle" (onSearch)="onSearch($event)" (onAdd)="onAdd($event)"></app-toolbox>
+
+  <div *ngFor="let course of courses | async | orderBy: 'creationDate'">
+    <app-searchable-item [searchableItem]="course" [itemTitle]="itemTitle" (onDelete)="onDelete($event)"
+      (onEdit)="onEdit($event)"></app-searchable-item>
+  </div>
+<!-- 
+  <div class="course-component__no-courses" *ngIf="hasNoCourses()">
+    No data. Feel free to add new course.
+  </div> -->
+
+  <div class="course-component__load-button-container">
+    <button type="button" class="course-component__load-more-button" (click)="load()">Load more</button>
+  </div>
+</div>
