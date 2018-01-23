@@ -42,22 +42,22 @@ export class AuthorizationService implements OnInit {
       .subscribe(
         (res: LoginResponse) => {
           console.log(res);
-          localStorage.setItem('currentToken', res.token);
+          localStorage.setItem('token', res.token);
           this.logins.next(name);
         },
         err => {
-          console.log('Error occured');
+          console.log(`Error occured ${err}`);
         }
       );
   }
 
   public Logout() {
-    localStorage.setItem('currentToken', '');
+    localStorage.setItem('token', '');
     this.logins.next('');
   }
 
   public IsAuthenticated(): boolean {
-    if (!localStorage.getItem('currentToken')) {
+    if (!localStorage.getItem('token')) {
       return false;
     }
 
@@ -68,25 +68,15 @@ export class AuthorizationService implements OnInit {
     if (this.IsAuthenticated()) {
       const loginUrl = `${environment.apiEndpoints.api}/auth/userinfo`;
 
-      return this._http
-        .post<UserResponse>(
-          loginUrl,
-          {},
-          {
-            headers: {
-              Authorization: localStorage.getItem('currentToken')
-            }
-          }
-        )
-        .subscribe(
-          (res: UserResponse) => {
-            console.log(res);
-            this.logins.next(res.login);
-          },
-          err => {
-            console.log('Error occured');
-          }
-        );
+      return this._http.post<UserResponse>(loginUrl, {}).subscribe(
+        (res: UserResponse) => {
+          console.log(res);
+          this.logins.next(res.login);
+        },
+        err => {
+          console.log(`Error occured ${err}`);
+        }
+      );
     }
   }
 }

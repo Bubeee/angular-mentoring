@@ -26,6 +26,8 @@ import { DateInputComponent } from './shared-components/date-input/date-input.co
 import { HttpModule } from '@angular/http';
 import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
 import { HttpClientModule  } from '@angular/common/http';
+import { AuthorizationInterceptor } from './common/services/authorization/authorization-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,11 @@ import { HttpClientModule  } from '@angular/common/http';
   ],
   providers: [
     AuthorizationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true
+    },
     ConfirmaitonDialogOverlayService,
     SearchPipe
   ],
