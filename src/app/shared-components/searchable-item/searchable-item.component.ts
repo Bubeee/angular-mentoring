@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { SearchableItem } from './searchable-item';
-import { ConfirmaitonDialogOverlayService } from '../../shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
+import { ConfirmaitonDialogOverlayService } from '../../common/services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
 import { Router } from '@angular/router';
 
 @Component({

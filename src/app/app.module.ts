@@ -9,12 +9,12 @@ import { ToolboxComponent } from './shared-components/toolbox/toolbox.component'
 import { SearchableItemComponent } from './shared-components/searchable-item/searchable-item.component';
 import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AuthorizationService } from './shared-services/authorization/authorization.service';
+import { AuthorizationService } from './common/services/authorization/authorization.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ConfirmationDialogComponent } from './shared-components/confirmation-dialog/confirmation-dialog.component';
-import { ConfirmaitonDialogOverlayService } from './shared-services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
+import { ConfirmaitonDialogOverlayService } from './common/services/confirmation-dialog-overlay/confirmation-dialog-overlay.service';
 import { FreshItemDirective } from './common/directives/attribute-directives/fresh-item.directive';
 import { OrderByPipe } from './common/pipes/order-by.pipe';
 import { DurationPipe } from './common/pipes/duration.pipe';

@@ -4,11 +4,10 @@ import { PortalInjector, ComponentPortal } from '@angular/cdk/portal';
 import { InjectionToken } from '@angular/core';
 
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ConfirmationDialogOverlayRef } from '../../shared-components/confirmation-dialog/confirmation-dialog-overlayref';
-import { Searchable_Item_Data } from '../../shared-components/confirmation-dialog/confirmation-dialog-overlay-data';
-import { SearchableItem } from '../../shared-components/searchable-item/searchable-item';
-import { ConfirmationDialogComponent } from '../../shared-components/confirmation-dialog/confirmation-dialog.component';
-
+import { ConfirmationDialogOverlayRef } from '../../../shared-components/confirmation-dialog/confirmation-dialog-overlayref';
+import { Searchable_Item_Data } from '../../../shared-components/confirmation-dialog/confirmation-dialog-overlay-data';
+import { SearchableItem } from '../../../shared-components/searchable-item/searchable-item';
+import { ConfirmationDialogComponent } from '../../../shared-components/confirmation-dialog/confirmation-dialog.component';
 
 interface ConfrmationDialogOverlayConfig {
   panelClass?: string;
