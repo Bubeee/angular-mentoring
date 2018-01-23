@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthorizationService } from '../../shared-services/authorization/authorization.service';
+import { AuthorizationService } from '../../common/services/authorization/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +15,6 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   isNotOnLoginPage(): boolean {
-    this._router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        this.fetchUserInfo();
-      }
-    });
     return this._router.url !== '/login';
   }
 
@@ -28,7 +23,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchUserInfo();
+    this._router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        this.fetchUserInfo();
+      }
+    });
   }
 
   logoff() {
@@ -38,11 +37,11 @@ export class HeaderComponent implements OnInit {
   }
 
   private fetchUserInfo() {
-    if (this.isAuthenticated()) {
-      this._authorizationService.logins.subscribe(
-        login => (this.currentUserName = login)
-      );
+    this._authorizationService.logins.subscribe(
+      login => (this.currentUserName = login)
+    );
 
+    if (this.isAuthenticated()) {
       this._authorizationService.GetUserInfo();
     }
   }

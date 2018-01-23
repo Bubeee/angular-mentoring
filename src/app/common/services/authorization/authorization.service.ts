@@ -1,5 +1,25 @@
 import { Injectable, OnInit } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import {
+  Http,
+  Request,
+  Response,
+  RequestOptions,
+  RequestMethod,
+  URLSearchParams
+} from '@angular/http';
+import { environment } from '../../../../environments/environment';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+class LoginResponse {
+  token: string;
+}
+
+class UserResponse {
+  login: string;
+}
 
 @Injectable()
 export class AuthorizationService implements OnInit {
@@ -9,22 +29,35 @@ export class AuthorizationService implements OnInit {
     this.GetUserInfo();
   }
 
-  constructor() {}
+  constructor(private _http: HttpClient) {}
 
   public Login(name: string, password: string) {
-    localStorage.setItem('currentLogin', name);
-    localStorage.setItem('currentToken', this.GenerateToken(password));
-    this.logins.next(name);
+    const loginUrl = `${environment.apiEndpoints.api}/auth/login`;
+
+    return this._http
+      .post<LoginResponse>(loginUrl, {
+        login: name,
+        password: password
+      })
+      .subscribe(
+        (res: LoginResponse) => {
+          console.log(res);
+          localStorage.setItem('currentToken', res.token);
+          this.logins.next(name);
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
   }
 
   public Logout() {
-    localStorage.setItem('currentLogin', '');
     localStorage.setItem('currentToken', '');
     this.logins.next('');
   }
 
   public IsAuthenticated(): boolean {
-    if (!localStorage.getItem('currentLogin')) {
+    if (!localStorage.getItem('currentToken')) {
       return false;
     }
 
@@ -32,23 +65,28 @@ export class AuthorizationService implements OnInit {
   }
 
   GetUserInfo() {
-    const currentLoginFromStorage = localStorage.getItem('currentLogin');
-    this.logins.next(currentLoginFromStorage);
-  }
+    if (this.IsAuthenticated()) {
+      const loginUrl = `${environment.apiEndpoints.api}/auth/userinfo`;
 
-  private GenerateToken(password: string): string {
-    let hash = 0,
-      i,
-      chr;
-
-    for (i = 0; i < password.length; i++) {
-      chr = password.charCodeAt(i);
-      // tslint:disable-next-line:no-bitwise
-      hash = (hash << 5) - hash + chr;
-      // tslint:disable-next-line:no-bitwise
-      hash |= 0;
+      return this._http
+        .post<UserResponse>(
+          loginUrl,
+          {},
+          {
+            headers: {
+              Authorization: localStorage.getItem('currentToken')
+            }
+          }
+        )
+        .subscribe(
+          (res: UserResponse) => {
+            console.log(res);
+            this.logins.next(res.login);
+          },
+          err => {
+            console.log('Error occured');
+          }
+        );
     }
-
-    return hash.toString();
   }
 }

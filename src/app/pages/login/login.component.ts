@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorizationService } from '../../shared-services/authorization/authorization.service';
+import { AuthorizationService } from '../../common/services/authorization/authorization.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,10 @@ export class LoginComponent implements OnInit {
   public _login = '';
   public _password = '';
 
-  constructor(private _authorizationService: AuthorizationService, private router: Router) {}
+  constructor(
+    private _authorizationService: AuthorizationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 

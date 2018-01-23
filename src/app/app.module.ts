@@ -25,6 +25,7 @@ import { DurationInputComponent } from './shared-components/duration-input/durat
 import { DateInputComponent } from './shared-components/date-input/date-input.component';
 import { HttpModule } from '@angular/http';
 import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
+import { HttpClientModule  } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddCourseComponent } from './pages/courses/add-course/add-course.compon
     FormsModule,
     AppRoutingModule,
     OverlayModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     AuthorizationService,
