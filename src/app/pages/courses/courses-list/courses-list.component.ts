@@ -36,7 +36,8 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   ) {}
 
   onDelete(id: number) {
-    this.courses = this._courseService.RemoveItem(id);
+    this._courseService.RemoveItem(id);
+    this.courses = this._courseService.SearchCourses('', 0, this.coursesLoaded);
   }
 
   onEdit(id: number) {
@@ -48,7 +49,11 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchString: string) {
-    this.courses = this._courseService.SearchCourses(searchString, 0, this.coursesLoaded);
+    this.courses = this._courseService.SearchCourses(
+      searchString,
+      0,
+      this.coursesLoaded
+    );
   }
 
   load() {
