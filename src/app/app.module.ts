@@ -28,6 +28,8 @@ import { AddCourseComponent } from './pages/courses/add-course/add-course.compon
 import { HttpClientModule  } from '@angular/common/http';
 import { AuthorizationInterceptor } from './common/services/authorization/authorization-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AuthGuardService } from './common/services/authorization/auth-guard.service.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     PickerComponent,
     DurationInputComponent,
     DateInputComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   providers: [
     AuthorizationService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationInterceptor,

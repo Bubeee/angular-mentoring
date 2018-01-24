@@ -16,10 +16,13 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._authorizationService.logins.subscribe(name =>
+      this.router.navigate(['courses'])
+    );
+  }
 
   login(name: string, password: string) {
     this._authorizationService.Login(name, password);
-    this.router.navigate(['courses']);
   }
 }

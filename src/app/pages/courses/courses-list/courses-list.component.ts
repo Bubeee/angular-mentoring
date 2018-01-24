@@ -49,7 +49,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   onEdit(id: number) {
-    this.router.navigate(['./edit-course', id]);
+    this.router.navigate(['./courses', id]);
   }
 
   onAdd() {
