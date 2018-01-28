@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchableItem, SearchableItemDto } from '../../../shared-components/searchable-item/searchable-item';
+import {
+  SearchableItem,
+  SearchableItemDto
+} from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Course } from '../course-item';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-course',
@@ -12,7 +16,13 @@ export class AddCourseComponent implements OnInit {
   course: SearchableItem;
   courseId: number;
 
-  constructor(private router: Router, route: ActivatedRoute) {
+  addCourseForm: FormGroup;
+
+  constructor(
+    private router: Router,
+    route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
     this.courseId = route.snapshot.params['id'];
   }
 
@@ -22,6 +32,14 @@ export class AddCourseComponent implements OnInit {
     dto.date = new Date();
 
     this.course = new Course(dto);
+
+    this.addCourseForm = this.formBuilder.group({
+      title: this.formBuilder.control({}),
+      description: this.formBuilder.control({}),
+      date: this.formBuilder.control({}),
+      duration: this.formBuilder.control({}),
+      authors: this.formBuilder.control({}),
+    });
   }
 
   save() {}

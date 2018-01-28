@@ -25,6 +25,15 @@ html{
     opacity: 0.85 !important;
 }
 
+.course__form__form-group{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 10px;
+  width: 100%;
+}
+
 .course__form__label{  
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 18px;
@@ -32,9 +41,6 @@ html{
   display: inline-block;
   width: 30%;
   text-align: right;
-}
-
-.course__form__label{
   width: 30%;
   margin-right: 10px;
 }

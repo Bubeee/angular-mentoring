@@ -1,18 +1,17 @@
 <div class="container">
-  <form class="course__form">
+  <form [formGroup]="addCourseForm" class="course__form">
     <div class="course__form__form-group">
       <label class="course__form__label" for="title">Title</label>
-      <input class="course__form__input" type="text" name="title" />
+      <input class="course__form__input" type="text" [formControlName]="title" />
     </div>
 
     <div class="course__form__form-group">
       <label class="course__form__label" for="description">Description</label>
-      <textarea class="course__form__input" name="description"></textarea>
+      <textarea class="course__form__input" [formControlName]="description"></textarea>
     </div>
 
     <div class="course__form__form-group">
       <label class="course__form__label" for="date">Date</label>
-
       <app-date-input></app-date-input>
     </div>
 

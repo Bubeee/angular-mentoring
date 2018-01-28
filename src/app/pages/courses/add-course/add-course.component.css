@@ -15,13 +15,20 @@
   border-radius: 5px;
 }
 
-.course__form__form-group{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 10px;
-  width: 100%;
+.course__form__label{  
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #333;
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  width: 30%;
+  margin-right: 10px;
+}
+
+.course__form__input{
+  display: inline-block;
+  width: 200px;
 }
 
 .form__buttons{
@@ -32,7 +39,6 @@
 .button__form{
   margin: 10px;
   width: 100px;
-
 }
 
 .course__form__button{
