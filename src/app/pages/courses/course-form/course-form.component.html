@@ -1,31 +1,46 @@
 <form [formGroup]="course" (ngSubmit)="onSubmit(course)" class="course__form">
   <div class="course__form__form-group">
     <label class="course__form__label" for="title">Title</label>
-    <input class="course__form__input" type="text" [formControlName]="title" />
+    <input class="course__form__input" type="text" formControlName="title" [ngClass]="{'course__form__label-error':!course.controls['title'].valid && course.controls['title'].touched}"/>
   </div>
+  <aside class="course__form__error" *ngIf="!course.controls['title'].valid && course.controls['title'].touched">
+    Title is required and must be less than 50 characters.
+  </aside>
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="description">Description</label>
-    <textarea class="course__form__input" [formControlName]="description"></textarea>
+    <textarea class="course__form__input" formControlName="description"></textarea>
   </div>
+  <aside class="course__form__error" *ngIf="!course.controls['description'].valid && course.controls['description'].touched">
+    Description is required and must be less than 500 characters.
+  </aside>
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="date">Date</label>
-    <app-date-input></app-date-input>
+    <app-date-input formControlName="date"></app-date-input>
   </div>
+  <aside class="course__form__error" *ngIf="!course.controls['date'].valid && course.controls['date'].touched">
+    Date is required in dd/MM/yyyy format.
+  </aside>
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="duration">Duration</label>
     <app-duration-input [duration]="course.duration"></app-duration-input>
   </div>
+  <aside class="course__form__error" *ngIf="!course.controls['duration'].valid && course.controls['duration'].touched">
+    Duration is required.
+  </aside>
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="authors">Authors</label>
     <app-picker></app-picker>
   </div>
+  <aside class="course__form__error" *ngIf="!course.controls['authors'].valid && course.controls['authors'].touched">
+    At least one author should be selected.
+  </aside>
 
   <div class="form__buttons">
-    <button type="button" class="button__form" (click)="save()">Save</button>
+    <button type="submit" class="button__form">Submit</button>
     <button type="button" class="button__form" (click)="cancel()">Cancel</button>
   </div>
 </form>

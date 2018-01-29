@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Course } from '../../pages/courses/course-item';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Course } from '../course-item';
+import { validateDateFormat } from '../../../shared-components/validators/date-format.vaidator';
 
 @Component({
   selector: 'app-course-form',
@@ -14,17 +15,17 @@ export class CourseFormComponent implements OnInit {
 
   ngOnInit() {
     this.course = this.formBuilder.group({
-      title: this.formBuilder.control({}),
-      description: this.formBuilder.control({}),
-      date: this.formBuilder.control({}),
-      duration: this.formBuilder.control({}),
-      authors: this.formBuilder.control({})
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      date: ['', [Validators.required, validateDateFormat]],
+      duration: ['', [Validators.required]],
+      authors: ['', [Validators.required]]
     });
   }
 
-  save() {}
-
   cancel() {}
 
-  onSubmit(course: Course) {}
+  onSubmit({ value, valid }: { value: Course; valid: boolean }) {
+    console.log(value, valid);
+  }
 }
