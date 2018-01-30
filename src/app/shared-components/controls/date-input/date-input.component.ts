@@ -1,5 +1,10 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  AbstractControl,
+  NG_VALIDATORS
+} from '@angular/forms';
 import { createDateDimeValidator } from '../../validators/date-format.vaidator';
 
 @Component({
@@ -11,12 +16,20 @@ import { createDateDimeValidator } from '../../validators/date-format.vaidator';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DateInputComponent),
       multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true
     }
   ]
 })
 export class DateInputComponent implements OnInit, ControlValueAccessor {
-  touched: boolean;
+  private valid: boolean;
+  private touched: boolean;
   private innerValue: any = '';
+
+  private validator = createDateDimeValidator('DD/MM/YYYY');
 
   private onTouchedCallback: () => void;
   private onChangeCallback: (_: any) => void;
@@ -53,6 +66,16 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
   onBlur() {
     this.touched = true;
     this.onTouchedCallback();
+  }
+
+  validate(control: AbstractControl) {
+    if (this.validator(control)) {
+      this.valid = false;
+    } else {
+      this.valid = true;
+    }
+
+    return this.validator(control);
   }
 
   constructor() {}

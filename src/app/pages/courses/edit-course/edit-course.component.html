@@ -1,34 +1,3 @@
 <div class="container">
-  <form class="course__form">
-    <div class="course__form__form-group">
-      <label class="course__form__label" for="title">Title</label>
-      <input class="course__form__input" type="text" name="title" />
-    </div>
-
-    <div class="course__form__form-group">
-      <label class="course__form__label" for="description">Description</label>
-      <textarea class="course__form__input" name="description"></textarea>
-    </div>
-
-    <div class="course__form__form-group">
-      <label class="course__form__label" for="date">Date</label>
-
-      <app-date-input></app-date-input>
-    </div>
-
-    <div class="course__form__form-group">
-      <label class="course__form__label" for="duration">Duration</label>
-      <app-duration-input [duration]="course.duration"></app-duration-input>
-    </div>
-
-    <div class="course__form__form-group">
-      <label class="course__form__label" for="authors">Authors</label>
-      <app-picker></app-picker>
-    </div>
-
-    <div class="form__buttons">
-      <button type="button" class="button__form" (click)="save()">Save</button>
-      <button type="button" class="button__form" (click)="cancel()">Cancel</button>
-    </div>
-  </form>
+  <app-course-form></app-course-form>
 </div>

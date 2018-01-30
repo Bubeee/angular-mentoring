@@ -23,7 +23,7 @@
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="date">Date</label>
-    <app-date-input formControlName="date" [ngClass]="{'course__form__control-error':!courseForm.controls['date'].valid && courseForm.controls['date'].touched}"></app-date-input>
+    <app-date-input formControlName="date"></app-date-input>
   </div>
   <div class="course__form__error" *ngIf="courseForm.controls['date'].hasError('required') && courseForm.controls['date'].touched">
     Date is required.
@@ -34,19 +34,22 @@
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="duration">Duration</label>
-    <app-duration-input [duration]="courseForm.duration"></app-duration-input>
+    <app-duration-input formControlName="duration"></app-duration-input>
   </div>
-  <aside class="course__form__error" *ngIf="!courseForm.controls['duration'].valid && courseForm.controls['duration'].touched">
+  <div class="course__form__error" *ngIf="courseForm.controls['duration'].hasError('required') && courseForm.controls['duration'].touched">
     Duration is required.
-  </aside>
+  </div>
+  <div class="course__form__error" *ngIf="courseForm.controls['duration'].hasError('numberValidator') && courseForm.controls['duration'].touched">
+    Only numbers allowed in duration input.
+  </div>
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="authors">Authors</label>
     <app-picker></app-picker>
   </div>
-  <aside class="course__form__error" *ngIf="!courseForm.controls['authors'].valid && courseForm.controls['authors'].touched">
+  <div class="course__form__error" *ngIf="!courseForm.controls['authors'].valid && courseForm.controls['authors'].touched">
     At least one author should be selected.
-  </aside>
+  </div>
 
   <div class="form__buttons">
     <button type="submit" class="button__form">Submit</button>

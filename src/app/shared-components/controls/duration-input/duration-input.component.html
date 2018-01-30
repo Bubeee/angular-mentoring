@@ -1,2 +1,2 @@
-<input class="course__form__input course__form__input-duration" type="text" [(ngModel)]="duration" />
-<p class="duration-input-aside">{{duration | duration}}</p>
+<input class="course__form__input course__form__input-duration" type="text" [(ngModel)]="value" (blur)="onBlur()" [ngClass]="{'course__form__control-error':!valid && touched}"/>
+<p class="duration-input-aside">{{value | duration}}</p>
