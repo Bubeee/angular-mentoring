@@ -1,19 +1,21 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-export const CUSTOM_DATE_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => DateInputComponent),
-  multi: true
-};
+import { createDateDimeValidator } from '../../validators/date-format.vaidator';
 
 @Component({
   selector: 'app-date-input',
   templateUrl: './date-input.component.html',
   styleUrls: ['./date-input.component.css'],
-  providers: [CUSTOM_DATE_CONTROL_VALUE_ACCESSOR]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateInputComponent),
+      multi: true
+    }
+  ]
 })
 export class DateInputComponent implements OnInit, ControlValueAccessor {
+  touched: boolean;
   private innerValue: any = '';
 
   private onTouchedCallback: () => void;
@@ -46,6 +48,11 @@ export class DateInputComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     throw new Error('Method not implemented.');
+  }
+
+  onBlur() {
+    this.touched = true;
+    this.onTouchedCallback();
   }
 
   constructor() {}

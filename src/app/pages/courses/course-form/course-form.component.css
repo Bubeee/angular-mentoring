@@ -5,6 +5,6 @@
   margin-left: 30px;
 }
 
-.course__form__label-error{
+.course__form__control-error{
   border: 2px solid red;
 }

@@ -1,14 +1,12 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import * as moment from 'moment';
 
-export function validateDateFormat(control: FormControl) {
-  const VALID_DATE_FORMAT = 'dd/MM/yyyy';
-
-  return moment(control.value, VALID_DATE_FORMAT, true).isValid()
-    ? null
-    : {
-        validateDateFormat: {
-          valid: false
-        }
-      };
+export function createDateDimeValidator(validFormat: string): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: boolean } | null => {
+    return moment(control.value, validFormat, true).isValid()
+      ? null
+      : {
+          validateDateFormat: true
+        };
+  };
 }
