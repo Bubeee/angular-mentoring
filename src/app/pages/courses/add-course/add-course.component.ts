@@ -4,7 +4,10 @@ import {
   SearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Course } from '../course-item';
+import { Course, CourseDto } from '../course-item';
+import * as moment from 'moment';
+import { CoursesService } from '../courses.service';
+import { AuthorsService } from '../authors.service';
 
 @Component({
   selector: 'app-add-course',
@@ -12,12 +15,32 @@ import { Course } from '../course-item';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
-  course: SearchableItem;
+  course: Course;
   courseId: number;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private courseService: CoursesService,
+    private authorService: AuthorsService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const dto = new CourseDto();
+    dto.title = '';
+    dto.description = '';
+    dto.date = moment(Date.now(), 'DD/MM/YYYY', true).toDate();
+    dto.duration = 35;
+
+    this.authorService.getAuthors().subscribe(
+      authors => {
+        dto.authors = authors;
+        console.log(authors);
+      },
+      error => console.log(error)
+    );
+
+    this.course = new Course(dto);
+  }
 
   save() {}
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course } from './course-item';
+import { Course, CourseDto } from './course-item';
 import { SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -14,15 +14,6 @@ import {
   URLSearchParams
 } from '@angular/http';
 import { environment } from '../../../environments/environment';
-
-class CourseDto {
-  id: number;
-  name: string;
-  description: string;
-  isTopRated: boolean;
-  date: Date;
-  length: number;
-}
 
 @Injectable()
 export class CoursesService {
@@ -52,22 +43,21 @@ export class CoursesService {
       .map((response: Response) => response.json())
       .map(courses =>
         courses.map((item: CourseDto) => {
-          const searchableItem = new SearchableItemDto();
-          searchableItem.date = item.date;
-          searchableItem.description = item.description;
-          searchableItem.duration = item.length;
-          searchableItem.id = item.id;
-          searchableItem.title = item.name;
-          searchableItem.topRated = item.isTopRated;
+          const dto = new CourseDto();
+          dto.date = item.date;
+          dto.description = item.description;
+          dto.length = item.length;
+          dto.id = item.id;
+          dto.title = item.name;
+          dto.isTopRated = item.isTopRated;
+          dto.authors = item.authors;
 
-          return new Course(searchableItem);
+          return new Course(dto);
         })
       );
   }
 
-  public CreateCourse(course: SearchableItemDto) {
-
-  }
+  public CreateCourse(course: SearchableItemDto) {}
 
   public RemoveItem(id: number) {
     const requestOptions = new RequestOptions();
@@ -80,6 +70,22 @@ export class CoursesService {
 
     request = new Request(requestOptions);
 
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json());
+  }
+
+  public GetCourse(id: number) {
+    const requestOptions = new RequestOptions();
+    const urlParams: URLSearchParams = new URLSearchParams();
+    let request: Request;
+
+    requestOptions.url = `${environment.apiEndpoints.api}/courses/${id}`;
+    requestOptions.method = RequestMethod.Get;
+    requestOptions.params = urlParams;
+
+    request = new Request(requestOptions);
+    debugger;
     return this._http
       .request(request)
       .map((response: Response) => response.json());

@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,8 +14,8 @@ import { createDateDimeValidator } from '../../../shared-components/validators/d
   styleUrls: ['./course-form.component.css']
 })
 export class CourseFormComponent implements OnInit {
+  @Input() courseModel: Course;
   courseForm: FormGroup;
-  courseModel: Course;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -27,12 +27,13 @@ export class CourseFormComponent implements OnInit {
       duration: [30, [Validators.required]],
       authors: ['', [Validators.required]]
     });
+
+    this.courseForm.setValue(this.courseModel);
   }
 
   cancel() {}
 
   onSubmit({ value, valid }: { value: Course; valid: boolean }) {
-    console.log(value, valid);
     console.log(value, valid);
   }
 }

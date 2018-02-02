@@ -1,1 +1,2 @@
-<input class="course__form__input" type="text" />
+<input *ngFor="let item of items" type="checkbox" 
+[(ngModel)]="item.checked" [value]="item.Id" />

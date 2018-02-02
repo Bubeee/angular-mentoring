@@ -32,6 +32,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuardService } from './common/services/authorization/auth-guard.service.service';
 import { CourseFormComponent } from './pages/courses/course-form/course-form.component';
+import { CoursesService } from './pages/courses/courses.service';
+import { AuthorsService } from './pages/courses/authors.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { CourseFormComponent } from './pages/courses/course-form/course-form.com
   ],
   providers: [
     AuthorizationService,
+    CoursesService,
+    AuthorsService,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,

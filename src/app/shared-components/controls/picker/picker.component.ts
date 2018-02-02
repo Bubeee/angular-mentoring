@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ControlValueAccessor, Validator, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -7,9 +7,11 @@ import { ControlValueAccessor, Validator, AbstractControl } from '@angular/forms
   styleUrls: ['./picker.component.css']
 })
 export class PickerComponent implements OnInit, ControlValueAccessor {
+  @Input() items: any = {};
+
   private touched: boolean;
   private valid: boolean;
-  private innerValue: any = '';
+  private innerValue: any;
 
   private onTouchedCallback: () => void;
   private onChangeCallback: (_: any) => void;
