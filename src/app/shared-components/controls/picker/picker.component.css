@@ -1,0 +1,5 @@
+.picker__container{
+  max-height: 100px;
+  overflow-y: auto;
+  text-align: left;
+}

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
   SearchableItem,
-  SearchableItemDto
+  ISearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Course, CourseDto } from '../course-item';
+import { Course, ICourseDto } from '../course-item';
 import * as moment from 'moment';
 import { CoursesService } from '../courses.service';
 import { AuthorsService } from '../authors.service';
+import { Author } from '../author';
 
 @Component({
   selector: 'app-add-course',
@@ -15,8 +16,7 @@ import { AuthorsService } from '../authors.service';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent implements OnInit {
-  course: Course;
-  courseId: number;
+  public course: Course;
 
   constructor(
     private router: Router,
@@ -25,21 +25,23 @@ export class AddCourseComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const dto = new CourseDto();
-    dto.title = '';
-    dto.description = '';
-    dto.date = moment(Date.now(), 'DD/MM/YYYY', true).toDate();
-    dto.duration = 35;
-
+    this.course = new Course({
+      id: 0,
+      name: '',
+      description: '',
+      date: null,
+      isTopRated: false,
+      length: 35,
+      authors: []
+    });
     this.authorService.getAuthors().subscribe(
       authors => {
-        dto.authors = authors;
-        console.log(authors);
+        this.course = Object.assign({}, this.course, {
+          authors: authors.map(a => new Author(a))
+        });
       },
       error => console.log(error)
     );
-
-    this.course = new Course(dto);
   }
 
   save() {}

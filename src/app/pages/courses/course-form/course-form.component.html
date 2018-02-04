@@ -45,7 +45,7 @@
 
   <div class="course__form__form-group">
     <label class="course__form__label" for="authors">Authors</label>
-    <app-picker [items]=course.authors></app-picker>
+    <app-picker formControlName="authors" [(ngModel)]="courseModel.authors"></app-picker>
   </div>
   <div class="course__form__error" *ngIf="!courseForm.controls['authors'].valid && courseForm.controls['authors'].touched">
     At least one author should be selected.

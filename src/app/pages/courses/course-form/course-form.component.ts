@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Course } from '../course-item';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-course-form',
@@ -24,11 +25,17 @@ export class CourseFormComponent implements OnInit {
       title: ['', [Validators.required, Validators.maxLength(50)]],
       description: ['', [Validators.required, Validators.maxLength(500)]],
       date: ['', [Validators.required]],
-      duration: [30, [Validators.required]],
+      duration: ['', [Validators.required]],
       authors: ['', [Validators.required]]
     });
 
-    this.courseForm.setValue(this.courseModel);
+    this.courseForm.setValue({
+      title: this.courseModel.title,
+      description: this.courseModel.description,
+      date: this.courseModel.date,
+      duration: this.courseModel.duration,
+      authors: this.courseModel.authors
+    });
   }
 
   cancel() {}

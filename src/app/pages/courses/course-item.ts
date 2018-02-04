@@ -1,27 +1,32 @@
 import {
   SearchableItem,
-  SearchableItemDto
+  ISearchableItemDto
 } from '../../shared-components/searchable-item/searchable-item';
-import { Author, AuthorDto } from './author';
+import { Author, IAuthorDto } from './author';
 
-export class CourseDto extends SearchableItemDto {
-  authors: AuthorDto[];
-  length: number;
-  isTopRated: boolean;
+export interface ICourseDto {
+  id: number;
   name: string;
+  description: string;
+  isTopRated: boolean;
+  date: Date;
+  authors: IAuthorDto[];
+  length: number;
 }
 
 export class Course extends SearchableItem {
   authors: Author[];
 
-  constructor(dto: CourseDto) {
-    super(dto);
+  constructor(dto: ICourseDto) {
+    super({
+      id: dto.id,
+      title: dto.name,
+      date: dto.date,
+      duration: dto.length,
+      description: dto.description,
+      topRated: dto.isTopRated
+    });
 
-    //this.authors = dto.authors.map(a => new Author(a));
-
-    this.authors = dto.authors;
-    this.title = dto.title;
-    this.duration = dto.length;
-    this.topRated = dto.isTopRated;
+    this.authors = dto.authors.map(a => new Author(a));
   }
 }

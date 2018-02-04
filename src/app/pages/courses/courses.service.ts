@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Course, CourseDto } from './course-item';
-import { SearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
+import { Course, ICourseDto } from './course-item';
+import { ISearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
@@ -42,22 +42,23 @@ export class CoursesService {
       .request(request)
       .map((response: Response) => response.json())
       .map(courses =>
-        courses.map((item: CourseDto) => {
-          const dto = new CourseDto();
-          dto.date = item.date;
-          dto.description = item.description;
-          dto.length = item.length;
-          dto.id = item.id;
-          dto.title = item.name;
-          dto.isTopRated = item.isTopRated;
-          dto.authors = item.authors;
+        courses.map((item: ICourseDto) => {
+          const dto = {
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            date: item.date,
+            isTopRated: item.isTopRated,
+            length: item.length,
+            authors: item.authors
+          };
 
           return new Course(dto);
         })
       );
   }
 
-  public CreateCourse(course: SearchableItemDto) {}
+  public CreateCourse(course: ISearchableItemDto) {}
 
   public RemoveItem(id: number) {
     const requestOptions = new RequestOptions();
@@ -85,7 +86,6 @@ export class CoursesService {
     requestOptions.params = urlParams;
 
     request = new Request(requestOptions);
-    debugger;
     return this._http
       .request(request)
       .map((response: Response) => response.json());

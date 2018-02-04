@@ -1,13 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ControlValueAccessor, Validator, AbstractControl } from '@angular/forms';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import {
+  ControlValueAccessor,
+  Validator,
+  AbstractControl,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import { ISelectableItem } from './selectable-item';
 
 @Component({
   selector: 'app-picker',
   templateUrl: './picker.component.html',
-  styleUrls: ['./picker.component.css']
+  styleUrls: ['./picker.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => PickerComponent)
+    }
+  ]
 })
 export class PickerComponent implements OnInit, ControlValueAccessor {
-  @Input() items: any = {};
+  @Input() items: ISelectableItem[];
 
   private touched: boolean;
   private valid: boolean;

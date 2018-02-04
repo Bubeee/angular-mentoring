@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {
   SearchableItem,
-  SearchableItemDto
+  ISearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
-import { Course, CourseDto } from '../course-item';
+import { Course, ICourseDto } from '../course-item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
 
@@ -21,13 +21,7 @@ export class EditCourseComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // TODO: Fetch course from service
-    const dto = new CourseDto();
-    dto.length = 30;
-    dto.date = new Date();
-
-    this.course = new Course(dto);
   }
 
   save() {}

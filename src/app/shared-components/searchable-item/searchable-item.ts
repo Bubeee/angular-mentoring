@@ -1,13 +1,13 @@
-export class SearchableItemDto {
-  public id: number;
-  public title: string;
-  public date: Date;
-  public duration: number;
-  public description: string;
-  public topRated: boolean;
+export interface ISearchableItemDto {
+  id: number;
+  title: string;
+  date: Date;
+  duration: number;
+  description: string;
+  topRated: boolean;
 }
 
-export abstract class SearchableItem implements SearchableItemDto {
+export class SearchableItem implements ISearchableItemDto {
   public id: number;
   public title: string;
   public date: Date;
@@ -15,7 +15,7 @@ export abstract class SearchableItem implements SearchableItemDto {
   public description: string;
   public topRated: boolean;
 
-  constructor(dto: SearchableItemDto) {
+  constructor(dto: ISearchableItemDto) {
     this.id = dto.id;
     this.title = dto.title;
     this.date = dto.date;

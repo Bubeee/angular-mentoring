@@ -1,2 +1,11 @@
-<input *ngFor="let item of items" type="checkbox" 
-[(ngModel)]="item.checked" [value]="item.Id" />
+<div class="picker__container">
+  <div *ngFor="let item of value">
+      <label>
+          <input type="checkbox"
+                 name="items"
+                 value="{{item.value}}"
+                 [(ngModel)]="item.checked"/>
+          {{item.name}}
+      </label>
+  </div>
+</div>

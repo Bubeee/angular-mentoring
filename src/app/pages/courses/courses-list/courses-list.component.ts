@@ -5,7 +5,7 @@ import { SearchPipe } from '../../../common/pipes/search.pipe';
 import { ISubscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import {
-  SearchableItemDto,
+  ISearchableItemDto,
   SearchableItem
 } from '../../../shared-components/searchable-item/searchable-item';
 import 'rxjs/add/operator/map';
