@@ -3,9 +3,11 @@ import {
   ControlValueAccessor,
   Validator,
   AbstractControl,
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS
 } from '@angular/forms';
 import { ISelectableItem } from './selectable-item';
+import { pickerValidator } from './picker.validator';
 
 @Component({
   selector: 'app-picker',
@@ -16,15 +18,18 @@ import { ISelectableItem } from './selectable-item';
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: forwardRef(() => PickerComponent)
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => PickerComponent),
+      multi: true
     }
   ]
 })
 export class PickerComponent implements OnInit, ControlValueAccessor {
-  @Input() items: ISelectableItem[];
-
   private touched: boolean;
   private valid: boolean;
-  private innerValue: any;
+  private innerValue: ISelectableItem[] = [];
 
   private onTouchedCallback: () => void;
   private onChangeCallback: (_: any) => void;
@@ -39,6 +44,8 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
       this.onChangeCallback(value);
     }
   }
+
+  updateCheckedItems(item, event) { }
 
   writeValue(value: any): void {
     if (value !== this.innerValue) {
@@ -64,7 +71,12 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
   }
 
   validate(control: AbstractControl) {
-    // TODO: validator
+    if (pickerValidator(control)) {
+      this.valid = false;
+    } else {
+      this.valid = true;
+    }
+    return pickerValidator(control);
   }
 
   constructor() {}

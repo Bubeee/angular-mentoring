@@ -2,8 +2,7 @@ import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
-  Validators,
-  NG_VALIDATORS
+  Validators
 } from '@angular/forms';
 import { Course } from '../course-item';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';

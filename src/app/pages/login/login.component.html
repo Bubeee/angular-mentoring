@@ -1,15 +1,28 @@
 <div class="login-form__container">
-  <form method="post">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
     <div class="login-form__form-group">
       <label for="Login" class="login-from__label">Login:</label>
-      <input type="text" class="login-form__input" name="Login" [(ngModel)]="_login"/>
+      <input [ngClass]="{'login__form__input-error':!loginForm.controls['login'].valid && loginForm.controls['login'].touched}"
+        type="text" class="login-form__input" name="Login" formControlName="login"
+      />
+
+      <div class="login__form__error" *ngIf="loginForm.controls['login'].hasError('required') && loginForm.controls['login'].touched">
+        Login is required
+      </div>
     </div>
 
     <div class="login-form__form-group">
       <label for="Password" class="login-from__label">Password:</label>
-      <input type="password" class="login-form__input" name="Password" [(ngModel)]="_password"/>
+      <input [ngClass]="{'login__form__input-error':!loginForm.controls['password'].valid && loginForm.controls['password'].touched}"
+        type="password" class="login-form__input" name="Password" formControlName="password"
+      />
+
+      <div class="login__form__error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">
+        Password is required
+      </div>
     </div>
 
-    <input class="login-form__submit-button" type="button" value="Enter" (click)="login(_login, _password)" />
+    <input [disabled]="!loginForm.valid" class="login-form__submit-button" type="submit"
+      value="Login" />
   </form>
 </div>

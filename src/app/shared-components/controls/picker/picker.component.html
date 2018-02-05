@@ -1,10 +1,11 @@
 <div class="picker__container">
-  <div *ngFor="let item of value">
-      <label>
+  <div *ngFor="let item of value" class="picker__item__container" [ngClass]="{'picker__item__container__selected':item.checked}">
+      <label class="picker__label">
           <input type="checkbox"
                  name="items"
                  value="{{item.value}}"
-                 [(ngModel)]="item.checked"/>
+                 [(ngModel)]="item.checked"
+                 (change)="updateCheckedItems(item, $event)" />
           {{item.name}}
       </label>
   </div>

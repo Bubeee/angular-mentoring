@@ -5,7 +5,7 @@ import {
   AbstractControl,
   NG_VALIDATORS
 } from '@angular/forms';
-import { numberValidator } from '../../validators/number-vaidator';
+import { numberValidator } from '../../validators/number.vaidator';
 
 @Component({
   selector: 'app-duration-input',

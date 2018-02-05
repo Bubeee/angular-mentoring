@@ -3,3 +3,21 @@
   overflow-y: auto;
   text-align: left;
 }
+
+.picker__label{
+  width: 100%;
+  display: block;
+}
+
+.picker__label:hover{
+  cursor: pointer;
+}
+
+.picker__item__container:hover{
+  background-color: gray;
+  cursor: pointer;
+}
+
+.picker__item__container__selected{
+  background-color: greenyellow;  
+}

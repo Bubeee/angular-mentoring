@@ -47,12 +47,12 @@
     <label class="course__form__label" for="authors">Authors</label>
     <app-picker formControlName="authors" [(ngModel)]="courseModel.authors"></app-picker>
   </div>
-  <div class="course__form__error" *ngIf="!courseForm.controls['authors'].valid && courseForm.controls['authors'].touched">
+  <div class="course__form__error" *ngIf="courseForm.controls['authors'].hasError('pickerValidator') && courseForm.controls['authors'].touched">
     At least one author should be selected.
   </div>
 
   <div class="form__buttons">
-    <button type="submit" class="button__form">Submit</button>
+    <button type="submit" class="button__form" [disabled]="!courseForm.valid">Submit</button>
     <button type="button" class="button__form" (click)="cancel()">Cancel</button>
   </div>
 </form>
