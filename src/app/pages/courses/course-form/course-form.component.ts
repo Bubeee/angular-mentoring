@@ -41,5 +41,6 @@ export class CourseFormComponent implements OnInit {
 
   onSubmit({ value, valid }: { value: Course; valid: boolean }) {
     console.log(value, valid);
+    console.log(this.courseForm.controls['authors'].errors);
   }
 }

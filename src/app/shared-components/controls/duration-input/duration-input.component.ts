@@ -67,12 +67,13 @@ export class DurationInputComponent implements OnInit, ControlValueAccessor {
   }
 
   validate(control: AbstractControl) {
-    if (numberValidator(control)) {
+    const validationResult = numberValidator(control);
+    if (validationResult) {
       this.valid = false;
     } else {
       this.valid = true;
     }
-    return numberValidator(control);
+    return validationResult;
   }
 
   constructor() {}

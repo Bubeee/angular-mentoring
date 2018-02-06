@@ -1,9 +1,10 @@
-<div class="picker__container">
+<div class="picker__container" [ngClass]="{'course__form__control-error':!valid && touched}">
   <div *ngFor="let item of value" class="picker__item__container" [ngClass]="{'picker__item__container__selected':item.checked}">
       <label class="picker__label">
           <input type="checkbox"
                  name="items"
-                 value="{{item.value}}"
+                 value="{{item}}"
+                 (blur)="onBlur()" 
                  [(ngModel)]="item.checked"
                  (change)="updateCheckedItems(item, $event)" />
           {{item.name}}

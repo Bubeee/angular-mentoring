@@ -4,7 +4,8 @@ import {
   Validator,
   AbstractControl,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS
+  NG_VALIDATORS,
+  FormControl
 } from '@angular/forms';
 import { ISelectableItem } from './selectable-item';
 import { pickerValidator } from './picker.validator';
@@ -27,12 +28,13 @@ import { pickerValidator } from './picker.validator';
   ]
 })
 export class PickerComponent implements OnInit, ControlValueAccessor {
-  private touched: boolean;
-  private valid: boolean;
-  private innerValue: ISelectableItem[] = [];
+  private innerValue: ISelectableItem[];
 
   private onTouchedCallback: () => void;
   private onChangeCallback: (_: any) => void;
+
+  public valid: boolean;
+  public touched: boolean;
 
   get value(): any {
     return this.innerValue;
@@ -45,7 +47,13 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  updateCheckedItems(item, event) { }
+  get selectedItems(){
+    return this.value.filter(value => value.checked);
+  }
+
+  updateCheckedItems(item, event) {
+    this.validate(this);
+  }
 
   writeValue(value: any): void {
     if (value !== this.innerValue) {
@@ -70,16 +78,19 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
     this.onTouchedCallback();
   }
 
-  validate(control: AbstractControl) {
-    if (pickerValidator(control)) {
+  validate(control: any) {
+    const validationResult = pickerValidator(control);
+    if (validationResult) {
       this.valid = false;
     } else {
       this.valid = true;
     }
-    return pickerValidator(control);
+
+    return validationResult;
   }
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {}
 }
