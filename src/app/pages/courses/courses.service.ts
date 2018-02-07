@@ -58,7 +58,37 @@ export class CoursesService {
       );
   }
 
-  public CreateCourse(course: ISearchableItemDto) {}
+  public CreateCourse(course: ISearchableItemDto) {
+    const requestOptions = new RequestOptions();
+    let request: Request;
+
+    requestOptions.url = `${environment.apiEndpoints.api}/courses`;
+    requestOptions.method = RequestMethod.Post;
+    requestOptions.body = course;
+
+    request = new Request(requestOptions);
+
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json())
+      .map((c: ICourseDto) => new Course(c));
+  }
+
+  public UpdateCourse(course: ISearchableItemDto) {
+    const requestOptions = new RequestOptions();
+    let request: Request;
+
+    requestOptions.url = `${environment.apiEndpoints.api}/courses/${course.id}`;
+    requestOptions.method = RequestMethod.Put;
+    requestOptions.body = course;
+
+    request = new Request(requestOptions);
+
+    return this._http
+      .request(request)
+      .map((response: Response) => response.json())
+      .map((c: ICourseDto) => new Course(c));
+  }
 
   public RemoveItem(id: number) {
     const requestOptions = new RequestOptions();

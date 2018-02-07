@@ -1,8 +1,16 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
-  Validators
+  Validators,
+  FormControl
 } from '@angular/forms';
 import { Course } from '../course-item';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';
@@ -16,6 +24,8 @@ import * as moment from 'moment';
 export class CourseFormComponent implements OnInit {
   @Input() courseModel: Course;
   courseForm: FormGroup;
+
+  @Output() onSubmit = new EventEmitter<Course>();
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -39,9 +49,23 @@ export class CourseFormComponent implements OnInit {
 
   cancel() {}
 
-  onSubmit({ value, valid }: { value: Course; valid: boolean }) {
-    console.log(value, valid);
-    console.log(this.courseForm.errors);
-    console.log(this.courseForm.controls['authors'].errors);
+  submit() {
+    console.log(this.courseForm.controls);
+    if (this.courseForm.valid) {
+      this.onSubmit.emit(this.courseModel);
+    } else {
+      this.validateAllFields(this.courseForm);
+    }
+  }
+
+  validateAllFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFields(control);
+      }
+    });
   }
 }

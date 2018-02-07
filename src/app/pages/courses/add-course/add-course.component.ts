@@ -45,7 +45,14 @@ export class AddCourseComponent implements OnInit {
     );
   }
 
-  save() {}
+  save(course: Course) {
+    this.coursesService
+      .CreateCourse(course)
+      .subscribe(
+        savedCourse => this.router.navigate(['courses']),
+        error => console.log(error)
+      );
+  }
 
   cancel() {
     this.router.navigate(['courses']);

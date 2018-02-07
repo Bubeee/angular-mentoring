@@ -26,7 +26,7 @@ import { pickerValidator } from './picker.validator';
   ]
 })
 export class PickerComponent implements OnInit, ControlValueAccessor {
-  private innerValue: ISelectableItem[];
+  private innerValue: ISelectableItem[] = [];
 
   private onTouchedCallback: () => void;
   private onChangeCallback: (_: any) => void;
