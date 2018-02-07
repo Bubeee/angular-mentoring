@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
-  Validator,
   AbstractControl,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS,
-  FormControl
+  NG_VALIDATORS
 } from '@angular/forms';
 import { ISelectableItem } from './selectable-item';
 import { pickerValidator } from './picker.validator';
@@ -17,8 +15,8 @@ import { pickerValidator } from './picker.validator';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => PickerComponent)
+      useExisting: forwardRef(() => PickerComponent),
+      multi: true
     },
     {
       provide: NG_VALIDATORS,

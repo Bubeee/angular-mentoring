@@ -6,6 +6,9 @@ import {
 import { Course, ICourseDto } from '../course-item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
+import { Observable } from 'rxjs/Observable';
+import { AuthorsService } from '../authors.service';
+import { Author } from '../author';
 
 @Component({
   selector: 'app-edit-course',
@@ -13,20 +16,51 @@ import { CoursesService } from '../courses.service';
   styleUrls: ['./edit-course.component.css']
 })
 export class EditCourseComponent implements OnInit {
-  course: SearchableItem;
-  courseId: number;
+  course: Course;
 
-  constructor(private router: Router, route: ActivatedRoute, http: CoursesService) {
-    this.courseId = route.snapshot.params['id'];
-  }
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _coursesService: CoursesService,
+    private _authorsService: AuthorsService
+  ) {}
 
   ngOnInit() {
-    // TODO: Fetch course from service
+    const courseId = this._route.snapshot.params['id'];
+    this.course = new Course({
+      id: 0,
+      name: '',
+      description: '',
+      date: null,
+      isTopRated: false,
+      length: 35,
+      authors: []
+    });
+
+    this._coursesService.GetCourse(courseId).subscribe(c => {
+      this.course = Object.assign({}, this.course, c);
+    });
+
+    this._authorsService.getAuthors().subscribe(
+      authors => {
+        authors.forEach(author => {
+          const authorIndex = this.course.authors.findIndex(
+            a => a.id === author.id
+          );
+          if (authorIndex > -1) {
+            this.course.authors[authorIndex].checked = true;
+          } else {
+            this.course.authors.push(author);
+          }
+        });
+      },
+      error => console.log(error)
+    );
   }
 
   save() {}
 
   cancel() {
-    this.router.navigate(['courses']);
+    this._router.navigate(['courses']);
   }
 }

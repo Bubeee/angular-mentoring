@@ -23,17 +23,17 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   private coursesLoaded = 3;
   itemTitle = 'Course';
 
-  ngOnInit(): void {
-    this.courses = this._courseService.SearchCourses('', 0, this.coursesLoaded);
-  }
-
-  ngOnDestroy(): void {}
-
   constructor(
     private _courseService: CoursesService,
     private _searchPipe: SearchPipe,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    this.courses = this._courseService.SearchCourses('', 0, this.coursesLoaded);
+  }
+
+  ngOnDestroy(): void {}
 
   onDelete(id: number) {
     this._courseService

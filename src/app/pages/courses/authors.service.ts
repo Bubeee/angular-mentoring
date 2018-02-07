@@ -8,10 +8,11 @@ import { Observable } from 'rxjs/Observable';
 export class AuthorsService {
   constructor(private _http: HttpClient) {}
 
-  public getAuthors(): Observable<IAuthorDto[]> {
+  public getAuthors(): Observable<Author[]> {
     const authorsUrl = `${environment.apiEndpoints.api}/authors`;
 
     return this._http
-      .get<IAuthorDto[]>(authorsUrl);
+      .get<IAuthorDto[]>(authorsUrl)
+      .map(authors => authors.map(a => new Author(a)));
   }
 }

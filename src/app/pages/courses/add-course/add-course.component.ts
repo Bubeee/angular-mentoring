@@ -20,8 +20,8 @@ export class AddCourseComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private courseService: CoursesService,
-    private authorService: AuthorsService
+    private coursesService: CoursesService,
+    private authorsService: AuthorsService
   ) {}
 
   ngOnInit() {
@@ -34,7 +34,8 @@ export class AddCourseComponent implements OnInit {
       length: 35,
       authors: []
     });
-    this.authorService.getAuthors().subscribe(
+
+    this.authorsService.getAuthors().subscribe(
       authors => {
         this.course = Object.assign({}, this.course, {
           authors: authors.map(a => new Author(a))
