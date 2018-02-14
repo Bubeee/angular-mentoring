@@ -3,7 +3,8 @@ import {
   ControlValueAccessor,
   AbstractControl,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS
+  NG_VALIDATORS,
+  Validator
 } from '@angular/forms';
 import { ISelectableItem } from './selectable-item';
 import { pickerValidator } from './picker.validator';
@@ -25,27 +26,27 @@ import { pickerValidator } from './picker.validator';
     }
   ]
 })
-export class PickerComponent implements OnInit, ControlValueAccessor {
-  private innerValue: ISelectableItem[] = [];
+export class PickerComponent
+  implements OnInit, ControlValueAccessor, Validator {
+  public innerValue: ISelectableItem[] = [];
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  public onTouched: () => void;
+  public onChange: (_: any) => void;
 
   public valid: boolean;
   public touched: boolean;
 
   get value(): any {
-    return this.innerValue;
+    return this.innerValue.filter(value => value.checked);
   }
 
   set value(value: any) {
-    if (value !== this.innerValue) {
-      this.innerValue = value;
-      this.onChangeCallback(value);
-    }
+    this.innerValue = value;
+    this.onChange(value);
+    this.onTouched();
   }
 
-  get selectedItems(){
+  get selectedValues() {
     return this.value.filter(value => value.checked);
   }
 
@@ -54,17 +55,17 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value: any): void {
-    if (value !== this.innerValue) {
+    if (value !== undefined && value !== this.innerValue) {
       this.innerValue = value;
     }
   }
 
   registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+    this.onTouched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
@@ -73,7 +74,7 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
 
   onBlur() {
     this.touched = true;
-    this.onTouchedCallback();
+    this.onTouched();
   }
 
   validate(control: any) {
@@ -87,8 +88,7 @@ export class PickerComponent implements OnInit, ControlValueAccessor {
     return validationResult;
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

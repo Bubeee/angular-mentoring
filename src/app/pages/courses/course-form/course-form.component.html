@@ -1,4 +1,4 @@
-<form [formGroup]="courseForm" (ngSubmit)="submit()" class="course__form">
+<form novalidate [formGroup]="courseForm" (ngSubmit)="submit()" class="course__form">
   <div class="course__form__form-group">
     <label class="course__form__label" for="title">Title</label>
     <input class="course__form__input" type="text" [(ngModel)]="courseModel.title" formControlName="title" [ngClass]="{'course__form__control-error':!courseForm.controls['title'].valid && courseForm.controls['title'].touched}"/>

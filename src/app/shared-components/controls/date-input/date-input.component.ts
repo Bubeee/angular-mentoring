@@ -3,7 +3,8 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   AbstractControl,
-  NG_VALIDATORS
+  NG_VALIDATORS,
+  Validator
 } from '@angular/forms';
 import { createDateDimeValidator } from '../../validators/date-format.vaidator';
 
@@ -24,7 +25,7 @@ import { createDateDimeValidator } from '../../validators/date-format.vaidator';
     }
   ]
 })
-export class DateInputComponent implements OnInit, ControlValueAccessor {
+export class DateInputComponent implements OnInit, ControlValueAccessor, Validator {
   private valid: boolean;
   private touched: boolean;
   private innerValue: any = '';

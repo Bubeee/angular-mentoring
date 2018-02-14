@@ -3,7 +3,8 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   AbstractControl,
-  NG_VALIDATORS
+  NG_VALIDATORS,
+  Validator
 } from '@angular/forms';
 import { numberValidator } from '../../validators/number.vaidator';
 
@@ -24,7 +25,7 @@ import { numberValidator } from '../../validators/number.vaidator';
     }
   ]
 })
-export class DurationInputComponent implements OnInit, ControlValueAccessor {
+export class DurationInputComponent implements OnInit, ControlValueAccessor, Validator {
   private touched: boolean;
   private valid: boolean;
   private innerValue: any = '';

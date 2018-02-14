@@ -15,6 +15,7 @@ import {
 import { Course } from '../course-item';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';
 import * as moment from 'moment';
+import { pickerValidator } from '../../../shared-components/controls/picker/picker.validator';
 
 @Component({
   selector: 'app-course-form',
@@ -38,19 +39,15 @@ export class CourseFormComponent implements OnInit {
       authors: ['', [Validators.required]]
     });
 
-    this.courseForm.setValue({
-      title: this.courseModel.title,
-      description: this.courseModel.description,
-      date: this.courseModel.date,
-      duration: this.courseModel.duration,
-      authors: this.courseModel.authors
+    this.courseForm.patchValue({
+      authors: []
     });
   }
 
   cancel() {}
 
   submit() {
-    console.log(this.courseForm.controls);
+    console.log(this.courseForm.controls['authors'].errors);
     if (this.courseForm.valid) {
       this.onSubmit.emit(this.courseModel);
     } else {

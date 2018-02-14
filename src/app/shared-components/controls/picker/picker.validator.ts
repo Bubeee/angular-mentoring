@@ -2,10 +2,8 @@ import { AbstractControl } from '@angular/forms';
 
 export function pickerValidator(
   control: AbstractControl
-): { [key: string]: boolean } | null {
-  return control.value.filter(v => v.checked).length > 0
+): { [key: string]: any } {
+  return control.value.length > 0
     ? null
-    : {
-        pickerValidator: true
-      };
+    : { pickerValidator: { value: control.value } };
 }
