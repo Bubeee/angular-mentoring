@@ -5,10 +5,10 @@
         <label class="required">Title</label>
         <input type="text" class="course__form-input" formControlName="title" [ngClass]="{'course__form__control-error':!courseForm.controls.title.valid && courseForm.controls.title.dirty}">
       </div>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.title.hasError('required') && courseForm.controls.title.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['title'].hasError('required') && courseForm.controls['title'].dirty">
         Please specify the title
       </span>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.title.hasError('maxlength') && courseForm.controls.title.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['title'].hasError('maxlength') && courseForm.controls['title'].dirty">
         The max length for the title is 50 symbols
       </span>
     </div>
@@ -19,10 +19,10 @@
           [ngClass]="{'course__form__control-error':!courseForm.controls.description.valid && courseForm.controls.description.dirty}"
           formControlName="description"></textarea>
       </div>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.description.hasError('required') && courseForm.controls.description.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['description'].hasError('required') && courseForm.controls['description'].dirty">
         Please specify the description
       </span>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.description.hasError('maxlength') && courseForm.controls.description.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['description'].hasError('maxlength') && courseForm.controls['description'].dirty">
         The max length for the description is 500 symbols
       </span>
     </div>
@@ -31,10 +31,10 @@
         <label class="required">Date</label>
         <app-date-input formControlName="date"></app-date-input>
       </div>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.date.hasError('required') && courseForm.controls.date.touched">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['date'].hasError('required') && courseForm.controls['date'].touched">
         Please specify the Date
       </span>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.date.hasError('invalidFormat') && courseForm.controls.date.touched">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['date'].hasError('invalidFormat') && courseForm.controls['date'].touched">
         Invalid Format Please Use dd/MM/yyyy
       </span>
     </div>
@@ -53,10 +53,10 @@
         </div>
       </div>
 
-      <span class="course__form-control-error" *ngIf="courseForm.controls.duration.hasError('required') && courseForm.controls.duration.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['duration'].hasError('required') && courseForm.controls['duration'].dirty">
         Please specify the Duration
       </span>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.duration.hasError('invalidFormat') && courseForm.controls.duration.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['duration'].hasError('invalidFormat') && courseForm.controls['duration'].dirty">
         Invalid Format Please Use numbers
       </span>
     </div>
@@ -66,8 +66,8 @@
         <label class="required">Authors</label>
         <app-picker class="course__element" formControlName="authors" [ngClass]="{'course__form__control-error':!courseForm.controls.authors.valid && courseForm.controls.authors.dirty}"></app-picker>
       </div>
-      <span class="course__form-control-error" *ngIf="courseForm.controls.authors.hasError('customPickerRequired') 
-                        && courseForm.controls.authors.dirty">
+      <span class="course__form-control-error" *ngIf="courseForm.controls['authors'].hasError('customPickerRequired') 
+                        && courseForm.controls['authors'].dirty">
         At least one item should be checked
       </span>
     </div>
