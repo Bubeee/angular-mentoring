@@ -49,13 +49,10 @@ import { DatePipe } from '@angular/common';
     OrderByPipe,
     DurationPipe,
     SearchPipe,
-    EditCourseComponent,
     PickerComponent,
     DurationInputComponent,
     DateInputComponent,
-    AddCourseComponent,
     NotFoundComponent,
-    CourseFormComponent,
     CourseComponent
   ],
   imports: [
