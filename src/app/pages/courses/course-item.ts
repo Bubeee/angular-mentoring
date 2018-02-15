@@ -2,22 +2,22 @@ import {
   SearchableItem,
   ISearchableItemDto
 } from '../../shared-components/searchable-item/searchable-item';
-import { Author, IAuthorDto } from './author';
+import { Author, AuthorDto } from './author';
 
-export interface ICourseDto {
+export class CourseDto {
   id: number;
   name: string;
   description: string;
   isTopRated: boolean;
   date: Date;
-  authors: IAuthorDto[];
+  authors: AuthorDto[];
   length: number;
 }
 
 export class Course extends SearchableItem {
   authors: Author[];
 
-  constructor(dto: ICourseDto) {
+  constructor(dto: CourseDto) {
     super({
       id: dto.id,
       title: dto.name,

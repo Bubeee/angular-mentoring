@@ -2,10 +2,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CoursesListComponent } from './pages/courses/courses-list/courses-list.component';
 import { LoginComponent } from './pages/login/login.component';
-import { EditCourseComponent } from './pages/courses/edit-course/edit-course.component';
-import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuardService } from './common/services/authorization/auth-guard.service.service';
+import { CourseComponent } from './pages/courses/course/course.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/courses', pathMatch: 'full' },
@@ -17,12 +16,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'courses/:id',
-    component: EditCourseComponent,
+    component: CourseComponent,
     canActivate: [AuthGuardService]
   },
   {
     path: 'add-course',
-    component: AddCourseComponent,
+    component: CourseComponent,
     canActivate: [AuthGuardService]
   },
   { path: '404', component: NotFoundComponent },

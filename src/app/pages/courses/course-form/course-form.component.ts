@@ -12,10 +12,11 @@ import {
   Validators,
   FormControl
 } from '@angular/forms';
-import { Course } from '../course-item';
+import { Course, CourseDto } from '../course-item';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';
 import * as moment from 'moment';
-import { pickerValidator } from '../../../shared-components/controls/picker/picker.validator';
+import { AuthorDto, Author } from '../author';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-course-form',
@@ -24,9 +25,11 @@ import { pickerValidator } from '../../../shared-components/controls/picker/pick
 })
 export class CourseFormComponent implements OnInit {
   @Input() courseModel: Course;
-  courseForm: FormGroup;
+  @Input() authors: Observable<Author[]>;
+  public courseForm: FormGroup;
 
   @Output() onSubmit = new EventEmitter<Course>();
+  @Output() onCancel = new EventEmitter<void>();
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -36,23 +39,60 @@ export class CourseFormComponent implements OnInit {
       description: ['', [Validators.required, Validators.maxLength(500)]],
       date: ['', [Validators.required]],
       duration: ['', [Validators.required]],
-      authors: ['', [Validators.required]]
+      authors: [[]]
     });
 
-    this.courseForm.patchValue({
-      authors: []
-    });
+    this.setValuesToTheForm(this.courseModel);
   }
 
-  cancel() {}
+  cancel() {
+    this.onCancel.emit();
+  }
 
   submit() {
-    console.log(this.courseForm.controls['authors'].errors);
     if (this.courseForm.valid) {
-      this.onSubmit.emit(this.courseModel);
+      // this.onSubmit.emit(this.courseModel);
     } else {
       this.validateAllFields(this.courseForm);
     }
+  }
+
+  private setValuesToTheForm(course: Course) {
+    this.courseForm.controls['title'].patchValue(course.title);
+    if (course.date) {
+      this.courseForm.controls['date'].patchValue(
+        moment(course.date).format('dd/MM/yyyy')
+      );
+    }
+
+    this.courseForm.controls['description'].patchValue(course.description);
+    this.courseForm.controls['duration'].patchValue(course.duration);
+
+    this.authors.subscribe(authors =>
+      this.courseForm.controls['authors'].patchValue(this.authors)
+    );
+  }
+
+  prepareSaveCourse(courseForm: FormGroup): CourseDto {
+    const formModel = courseForm.value;
+
+    const course: CourseDto = new CourseDto();
+    course.name = formModel.title;
+    course.date = new Date(formModel.date);
+    course.description = formModel.description;
+    course.length = formModel.duration;
+    course.isTopRated = formModel.topRated;
+    course.authors = [];
+
+    for (const author of formModel.authors) {
+      if (author.checked) {
+        const authorDto = new AuthorDto();
+        authorDto.id = author.id;
+        course.authors.push(authorDto);
+      }
+    }
+
+    return course;
   }
 
   validateAllFields(formGroup: FormGroup) {

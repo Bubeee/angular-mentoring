@@ -1,3 +1,12 @@
-.duration-input-aside{
-  text-align: left;
+.course__form-input-number {
+  box-sizing: border-box;
+  width: 35%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+.course__form-duration-info {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

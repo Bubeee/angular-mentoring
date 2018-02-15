@@ -4,11 +4,12 @@ import {
   ISearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Course, ICourseDto } from '../course-item';
+import { Course, CourseDto } from '../course-item';
 import * as moment from 'moment';
 import { CoursesService } from '../courses.service';
 import { AuthorsService } from '../authors.service';
 import { Author } from '../author';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-add-course',
@@ -17,6 +18,7 @@ import { Author } from '../author';
 })
 export class AddCourseComponent implements OnInit {
   public course: Course;
+  public authors: Observable<Author[]>;
 
   constructor(
     private router: Router,
@@ -35,23 +37,16 @@ export class AddCourseComponent implements OnInit {
       authors: []
     });
 
-    this.authorsService.getAuthors().subscribe(
-      authors => {
-        this.course = Object.assign({}, this.course, {
-          authors: authors.map(a => new Author(a))
-        });
+    this.authors = this.authorsService.getAuthors();
+  }
+
+  save(course: CourseDto) {
+    this.coursesService.CreateCourse(course).subscribe(
+      savedCourse => {
+        this.router.navigate(['courses']);
       },
       error => console.log(error)
     );
-  }
-
-  save(course: Course) {
-    this.coursesService
-      .CreateCourse(course)
-      .subscribe(
-        savedCourse => this.router.navigate(['courses']),
-        error => console.log(error)
-      );
   }
 
   cancel() {

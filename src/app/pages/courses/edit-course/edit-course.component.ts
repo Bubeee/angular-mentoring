@@ -3,7 +3,7 @@ import {
   SearchableItem,
   ISearchableItemDto
 } from '../../../shared-components/searchable-item/searchable-item';
-import { Course, ICourseDto } from '../course-item';
+import { Course, CourseDto } from '../course-item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from '../courses.service';
 import { Observable } from 'rxjs/Observable';
@@ -34,7 +34,7 @@ export class EditCourseComponent implements OnInit {
       date: null,
       isTopRated: false,
       length: 35,
-      authors: []
+      authors: [],
     });
 
     this._coursesService.GetCourse(courseId).subscribe(c => {
@@ -58,7 +58,7 @@ export class EditCourseComponent implements OnInit {
     );
   }
 
-  save(course: Course) {
+  save(course: CourseDto) {
     this._coursesService
       .UpdateCourse(course)
       .subscribe(

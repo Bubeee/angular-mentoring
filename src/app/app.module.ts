@@ -26,7 +26,7 @@ import { DurationInputComponent } from './shared-components/controls/duration-in
 import { DateInputComponent } from './shared-components/controls/date-input/date-input.component';
 import { HttpModule } from '@angular/http';
 import { AddCourseComponent } from './pages/courses/add-course/add-course.component';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthorizationInterceptor } from './common/services/authorization/authorization-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -34,6 +34,8 @@ import { AuthGuardService } from './common/services/authorization/auth-guard.ser
 import { CourseFormComponent } from './pages/courses/course-form/course-form.component';
 import { CoursesService } from './pages/courses/courses.service';
 import { AuthorsService } from './pages/courses/authors.service';
+import { CourseComponent } from './pages/courses/course/course.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { AuthorsService } from './pages/courses/authors.service';
     DateInputComponent,
     AddCourseComponent,
     NotFoundComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { AuthorsService } from './pages/courses/authors.service';
     AuthorizationService,
     CoursesService,
     AuthorsService,
+    DatePipe,
     AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,

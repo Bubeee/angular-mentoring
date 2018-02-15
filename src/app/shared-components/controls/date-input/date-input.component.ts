@@ -72,7 +72,7 @@ export class DateInputComponent implements OnInit, ControlValueAccessor, Validat
   validate(control: AbstractControl) {
     const validationResult = this.validator(control);
 
-    if (validationResult) {
+    if (validationResult && control.value) {
       this.valid = false;
     } else {
       this.valid = true;

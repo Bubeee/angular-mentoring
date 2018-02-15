@@ -6,7 +6,7 @@ import {
   NG_VALIDATORS,
   Validator
 } from '@angular/forms';
-import { numberValidator } from '../../validators/number.vaidator';
+import { createNumberValidator } from '../../validators/number.vaidator';
 
 @Component({
   selector: 'app-duration-input',
@@ -26,12 +26,15 @@ import { numberValidator } from '../../validators/number.vaidator';
   ]
 })
 export class DurationInputComponent implements OnInit, ControlValueAccessor, Validator {
-  private touched: boolean;
-  private valid: boolean;
-  private innerValue: any = '';
+  public touched: boolean;
+  public dirty: boolean;
+  public valid: boolean;
+  public innerValue: any = '';
 
-  private onTouchedCallback: () => void;
-  private onChangeCallback: (_: any) => void;
+  public onTouchedCallback: () => void;
+  public onChangeCallback: (_: any) => void;
+
+  public validator = createNumberValidator();
 
   get value(): any {
     return this.innerValue;
@@ -39,6 +42,7 @@ export class DurationInputComponent implements OnInit, ControlValueAccessor, Val
 
   set value(value: any) {
     if (value !== this.innerValue) {
+      this.dirty = true;
       this.innerValue = value;
       this.onChangeCallback(value);
     }
@@ -58,17 +62,13 @@ export class DurationInputComponent implements OnInit, ControlValueAccessor, Val
     this.onTouchedCallback = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
-  }
-
   onBlur() {
     this.touched = true;
     this.onTouchedCallback();
   }
 
   validate(control: AbstractControl) {
-    const validationResult = numberValidator(control);
+    const validationResult = this.validator(control);
     if (validationResult) {
       this.valid = false;
     } else {

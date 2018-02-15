@@ -1,12 +1,12 @@
 import { ISelectableItem } from '../../shared-components/controls/picker/selectable-item';
 
-export interface IAuthorDto {
+export class AuthorDto {
   id: number;
   firstName: string;
   lastName: string;
 }
 
-export class Author implements IAuthorDto, ISelectableItem {
+export class Author implements AuthorDto, ISelectableItem {
   id: number;
   firstName: string;
   lastName: string;
@@ -15,7 +15,7 @@ export class Author implements IAuthorDto, ISelectableItem {
   value: number;
   name: string;
 
-  constructor(dto: IAuthorDto) {
+  constructor(dto: AuthorDto) {
     this.id = this.value = dto.id;
     this.firstName = dto.firstName;
     this.lastName = dto.lastName;

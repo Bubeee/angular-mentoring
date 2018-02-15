@@ -1,11 +1,9 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function numberValidator(
-  control: AbstractControl
-): { [key: string]: boolean } | null {
-  return !isNaN(control.value)
-    ? null
-    : {
-        numberValidator: true
-      };
+export function createNumberValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    return !isNaN(control.value)
+      ? null
+      : { invalidFormat: { value: control.value } };
+  };
 }

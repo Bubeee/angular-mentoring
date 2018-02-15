@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course, ICourseDto } from './course-item';
+import { Course, CourseDto } from './course-item';
 import { ISearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -42,7 +42,7 @@ export class CoursesService {
       .request(request)
       .map((response: Response) => response.json())
       .map(courses =>
-        courses.map((item: ICourseDto) => {
+        courses.map((item: CourseDto) => {
           const dto = {
             id: item.id,
             name: item.name,
@@ -50,7 +50,8 @@ export class CoursesService {
             date: item.date,
             isTopRated: item.isTopRated,
             length: item.length,
-            authors: item.authors
+            authors: item.authors,
+            selectedAuthors: item.authors,
           };
 
           return new Course(dto);
@@ -58,7 +59,7 @@ export class CoursesService {
       );
   }
 
-  public CreateCourse(course: ISearchableItemDto) {
+  public CreateCourse(course: CourseDto) {
     const requestOptions = new RequestOptions();
     let request: Request;
 
@@ -71,10 +72,10 @@ export class CoursesService {
     return this._http
       .request(request)
       .map((response: Response) => response.json())
-      .map((c: ICourseDto) => new Course(c));
+      .map((c: CourseDto) => new Course(c));
   }
 
-  public UpdateCourse(course: ISearchableItemDto) {
+  public UpdateCourse(course: CourseDto) {
     const requestOptions = new RequestOptions();
     let request: Request;
 
@@ -87,7 +88,7 @@ export class CoursesService {
     return this._http
       .request(request)
       .map((response: Response) => response.json())
-      .map((c: ICourseDto) => new Course(c));
+      .map((c: CourseDto) => new Course(c));
   }
 
   public RemoveItem(id: number) {
@@ -119,6 +120,6 @@ export class CoursesService {
     return this._http
       .request(request)
       .map((response: Response) => response.json())
-      .map((course: ICourseDto) => new Course(course));
+      .map((course: CourseDto) => new Course(course));
   }
 }

@@ -1,13 +1,16 @@
 <div class="picker__container" [ngClass]="{'course__form__control-error':!valid && touched}">
-  <div *ngFor="let item of innerValue" class="picker__item__container" [ngClass]="{'picker__item__container__selected':item.checked}">
+  <div *ngIf="items && items.length > 0 else nodata">
+    <div *ngFor="let item of items" class="picker__item__container" [ngClass]="{'picker__item__container__selected':item.checked}">
       <label class="picker__label">
-          <input type="checkbox"
-                 name="items"
-                 value="{{item}}"
-                 (blur)="onBlur()" 
-                 [(ngModel)]="item.checked"
-                 (change)="updateCheckedItems(item, $event)" />
-          {{item.name}}
+        <input type="checkbox" name="items" [value]="item.value" (change)="updateCheckedItems(item)"
+          [checked]="item.checked" /> {{item.name}}
       </label>
+    </div>
   </div>
+
+  <ng-template #nodata>
+    <div>
+      No data.
+    </div>
+  </ng-template>
 </div>

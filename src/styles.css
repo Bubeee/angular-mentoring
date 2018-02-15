@@ -60,3 +60,90 @@ html{
 .course__form__control-error{
   border: 2px solid red;
 }
+
+
+.course {
+  flex-wrap: wrap;
+  max-width: 950px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.course__form-element {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  width: 60%;
+}
+
+.course__form-control {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.course__form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 65%;
+}
+
+.course__form-control label {
+  display: block;
+  width: 125px;
+  font-weight: bold;
+  font-size: 1em;
+  width: 25%;
+}
+
+.course__form-control .course__form-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+.course__form-control .course__element {
+  width: 100%;
+}
+
+.course__form-control .course__form-input-textarea {
+  resize: vertical;
+}
+
+.course__form-control-error {
+  display: flex;
+  font-size: 14px;
+  color: red;
+}
+
+label.required:after {
+  content: " *";
+  color: red;
+}
+
+.course__form-input-number {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
+
+.course__form-duration-info {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.course__form-duration {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
