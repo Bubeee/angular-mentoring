@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IBreadcrumb } from './breadcrumb';
-import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+  NavigationEnd,
+  PRIMARY_OUTLET
+} from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -51,11 +56,17 @@ export class BreadcrumbComponent implements OnInit {
 
       url += `/${routeURL}`;
 
+      const id = child.snapshot.params.id;
       const breadcrumb: IBreadcrumb = {
         label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
         params: child.snapshot.params,
         url: url
       };
+
+      if (id) {
+        breadcrumb.label += ' ' + id;
+      }
+
       breadcrumbs.push(breadcrumb);
 
       return this.getBreadcrumbs(child, url, breadcrumbs);
