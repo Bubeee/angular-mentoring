@@ -52,7 +52,7 @@ export class CourseComponent implements OnInit, OnDestroy {
 
     if (this.editMode) {
       this.routeSubscription = this.router.params.subscribe(data => {
-        const courseId = +data['id'];
+        const courseId = data['id'];
         this.courseSubscription = this.courseService
           .GetCourse(courseId)
           .subscribe(

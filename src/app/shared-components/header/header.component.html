@@ -6,7 +6,9 @@
     <h4>EDUCATIO</h4>
   </div>
 
-  <div class="header__breadcrumb" *ngIf="isNotOnLoginPage()">Courses</div>
+  <div class="header__breadcrumb" *ngIf="isNotOnLoginPage()">
+    <app-breadcrumb></app-breadcrumb>
+  </div>
 
   <div class="header__account" *ngIf="isNotOnLoginPage()">
     <p *ngIf="currentUserName">{{currentUserName}},

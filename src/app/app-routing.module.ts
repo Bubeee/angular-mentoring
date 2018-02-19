@@ -11,18 +11,30 @@ const routes: Routes = [
   {
     path: 'courses',
     component: CoursesListComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      breadcrumb: ''
+    }
   },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'courses/:id',
     component: CourseComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      breadcrumb: 'Course'
+    }
   },
   {
     path: 'add-course',
     component: CourseComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    data: {
+      breadcrumb: 'New Course'
+    }
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }

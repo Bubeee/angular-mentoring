@@ -33,6 +33,7 @@ import { CoursesService } from './pages/courses/courses.service';
 import { AuthorsService } from './pages/courses/authors.service';
 import { CourseComponent } from './pages/courses/course/course.component';
 import { DatePipe } from '@angular/common';
+import { BreadcrumbComponent } from './shared-components/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DatePipe } from '@angular/common';
     DurationInputComponent,
     DateInputComponent,
     NotFoundComponent,
-    CourseComponent
+    CourseComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
