@@ -4,14 +4,14 @@ import { OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { AuthorDto } from '../author';
-import { AuthorsService } from '../authors.service';
-import { CoursesService } from '../courses.service';
+import { AuthorDto } from '../authors.service/author';
+import { AuthorsService } from '../authors.service/authors.service';
 import { createDateDimeValidator } from '../../../shared-components/validators/date-format.vaidator';
 import { createNumberValidator } from '../../../shared-components/validators/number.vaidator';
 import { createPickerValidator } from '../../../shared-components/controls/picker/picker.validator';
 import { ISelectableItem } from '../../../shared-components/controls/picker/selectable-item';
-import { CourseDto, Course } from '../course-item';
+import { Course, CourseDto } from '../courses.service/course-item';
+import { CoursesService } from '../courses.service/courses.service';
 
 @Component({
   selector: 'app-course',

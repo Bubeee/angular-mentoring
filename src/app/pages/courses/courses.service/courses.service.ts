@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Course, CourseDto } from './course-item';
-import { ISearchableItemDto } from '../../shared-components/searchable-item/searchable-item';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
@@ -13,7 +12,7 @@ import {
   RequestMethod,
   URLSearchParams
 } from '@angular/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class CoursesService {

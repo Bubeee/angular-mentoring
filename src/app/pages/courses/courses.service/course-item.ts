@@ -1,8 +1,8 @@
 import {
   SearchableItem,
   ISearchableItemDto
-} from '../../shared-components/searchable-item/searchable-item';
-import { Author, AuthorDto } from './author';
+} from '../../../shared-components/searchable-item/searchable-item';
+import { Author, AuthorDto } from '../authors.service/author';
 
 export class CourseDto {
   id: number;

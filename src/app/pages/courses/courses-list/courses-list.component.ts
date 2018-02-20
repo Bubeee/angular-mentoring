@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Course } from '../course-item';
-import { CoursesService } from '../courses.service';
 import { SearchPipe } from '../../../common/pipes/search.pipe';
 import { ISubscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +9,8 @@ import {
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import { Router } from '@angular/router';
+import { Course } from '../courses.service/course-item';
+import { CoursesService } from '../courses.service/courses.service';
 
 @Component({
   selector: 'app-courses-list',

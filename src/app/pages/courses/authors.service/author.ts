@@ -1,4 +1,4 @@
-import { ISelectableItem } from '../../shared-components/controls/picker/selectable-item';
+import { ISelectableItem } from '../../../shared-components/controls/picker/selectable-item';
 
 export class AuthorDto {
   id: number;

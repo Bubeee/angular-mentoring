@@ -29,8 +29,8 @@ import { AuthorizationInterceptor } from './common/services/authorization/author
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuardService } from './common/services/authorization/auth-guard.service.service';
-import { CoursesService } from './pages/courses/courses.service';
-import { AuthorsService } from './pages/courses/authors.service';
+import { CoursesService } from './pages/courses/courses.service/courses.service';
+import { AuthorsService } from './pages/courses/authors.service/authors.service';
 import { CourseComponent } from './pages/courses/course/course.component';
 import { DatePipe } from '@angular/common';
 import { BreadcrumbComponent } from './shared-components/breadcrumb/breadcrumb.component';
