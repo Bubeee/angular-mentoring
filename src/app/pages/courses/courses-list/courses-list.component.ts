@@ -31,11 +31,11 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     private _courseService: CoursesService,
     private _searchPipe: SearchPipe,
     private router: Router,
-    private store: Store<CourseListState>
+    private store: Store<any>
   ) {}
 
   ngOnInit(): void {
-    this.courses = this.store.select(state => state.courses);
+    this.courses = this.store.select(state => state.CourseList.courses);
 
     this.store.dispatch(new CourseActions.ClearState());
     this.store.dispatch(new CourseActions.LoadCourses());

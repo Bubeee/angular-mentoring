@@ -22,7 +22,6 @@ const newState = (state, newData) => {
 export const CourseReducer = (state: CourseListState = defaultState, action) => {
   switch (action.type) {
     case CourseActions.LOAD_COURSES_SUCCESS: {
-      debugger;
       return newState(state, { courses: action.payload });
     }
     case CourseActions.ADD_COURSE_SUCCESS: {
