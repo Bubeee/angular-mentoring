@@ -34,6 +34,11 @@ import { AuthorsService } from './pages/courses/authors.service/authors.service'
 import { CourseComponent } from './pages/courses/course/course.component';
 import { DatePipe } from '@angular/common';
 import { BreadcrumbComponent } from './shared-components/breadcrumb/breadcrumb.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CourseReducer } from './pages/courses/store/course.reducer';
+import { CourseEffects } from './pages/courses/store/course.effects';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,16 @@ import { BreadcrumbComponent } from './shared-components/breadcrumb/breadcrumb.c
     AppRoutingModule,
     OverlayModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({
+      courses: CourseReducer
+    }),
+    EffectsModule.forRoot([
+      CourseEffects
+    ]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }),
   ],
   providers: [
     AuthorizationService,

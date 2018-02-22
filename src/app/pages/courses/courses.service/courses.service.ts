@@ -90,7 +90,7 @@ export class CoursesService {
       .map((c: CourseDto) => new Course(c));
   }
 
-  public RemoveItem(id: number) {
+  public RemoveCourse(id: number) {
     const requestOptions = new RequestOptions();
     const urlParams: URLSearchParams = new URLSearchParams();
     let request: Request;
