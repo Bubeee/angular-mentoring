@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchPipe } from '../../../common/pipes/search.pipe';
-import { ISubscription } from 'rxjs/Subscription';
+import { ISubscription, Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/from';
@@ -25,8 +25,6 @@ import { CourseListState } from '../store/course.reducer';
 })
 export class CoursesListComponent implements OnInit, OnDestroy {
   public courses: Observable<Course[]>;
-  public coursesLoaded;
-  public queryString;
   itemTitle = 'Course';
 
   constructor(
@@ -38,15 +36,14 @@ export class CoursesListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.courses = this.store.select(state => state.courses);
-    this.coursesLoaded = this.store.select(state => state.coursesLoaded);
-    this.queryString = this.store.select(state => state.query);
 
-    this.store.dispatch(
-      new CourseActions.LoadCourses('', 0, this.coursesLoaded)
-    );
+    this.store.dispatch(new CourseActions.ClearState());
+    this.store.dispatch(new CourseActions.LoadCourses());
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.store.dispatch(new CourseActions.ClearState());
+  }
 
   onDelete(id: number) {
     this.store.dispatch(new CourseActions.DeleteCourse(id));
@@ -61,11 +58,11 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchString: string) {
-    this.store.dispatch(new CourseActions.LoadCourses(searchString, 0, this.coursesLoaded));
+    this.store.dispatch(new CourseActions.LoadCourses());
   }
 
   load() {
-    this.store.dispatch(new CourseActions.LoadCourses(this.queryString, 0, this.coursesLoaded + 3));
+    this.store.dispatch(new CourseActions.LoadCourses());
   }
 
   hasNoCourses(): boolean {

@@ -71,7 +71,7 @@ import { CourseEffects } from './pages/courses/store/course.effects';
     HttpModule,
     HttpClientModule,
     StoreModule.forRoot({
-      courses: CourseReducer
+      CourseList: CourseReducer
     }),
     EffectsModule.forRoot([
       CourseEffects

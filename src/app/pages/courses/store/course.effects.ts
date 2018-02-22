@@ -35,12 +35,12 @@ export class CourseEffects {
   @Effect()
   loadCourses$: Observable<Action> = this.actions
     .ofType(CourseActions.LOAD_COURSES)
-    .switchMap((action: CourseActions.LoadCourses) =>
-      this.coursesService.SearchCourses(
-        action.query ? action.query : '',
-        action.skip ? action.skip : 0,
-        action.take ? action.take : 3
-      )
+    .pipe(
+      withLatestFrom(this.store.select(state => state.query)),
+      withLatestFrom(this.store.select(state => state.coursesLoaded)),
+      mergeMap(([[action, q], coursesLoaded]) => {
+        return this.coursesService.SearchCourses('', 0, 3);
+      })
     )
     .map((courses: any) => {
       return new CourseActions.LoadCoursesSuccess(courses);
@@ -49,9 +49,9 @@ export class CourseEffects {
   @Effect()
   loadCourse$: Observable<Action> = this.actions
     .ofType(CourseActions.LOAD_COURSE)
-    .switchMap((action: CourseActions.LoadCourse) =>
-      this.coursesService.GetCourse(action.courseId)
-    )
+    .switchMap((action: CourseActions.LoadCourse) => {
+      return this.coursesService.GetCourse(action.courseId);
+    })
     .map((course: any) => {
       return new CourseActions.LoadCourseSuccess(course);
     });
@@ -80,12 +80,5 @@ export class CourseEffects {
   @Effect()
   deleteCourseSuccess$: Observable<Action> = this.actions
     .ofType(CourseActions.DELETE_COURSE_SUCCESS)
-    .pipe(
-      withLatestFrom(this.store.select(state => state.query)),
-      withLatestFrom(this.store.select(state => state.coursesLoaded)),
-      map(
-        ([[action, q], coursesLoaded]) =>
-          new CourseActions.LoadCourses(q, 0, coursesLoaded)
-      )
-    );
+    .pipe(map(_ => new CourseActions.LoadCourses()));
 }

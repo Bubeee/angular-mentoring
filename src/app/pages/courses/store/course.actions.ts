@@ -16,12 +16,15 @@ export const EDIT_COURSE_SUCCESS = '[Course] EDIT_COURSE_SUCCESS';
 export const DELETE_COURSE = '[Course] DELETE_COURSE';
 export const DELETE_COURSE_SUCCESS = '[Course] DELETE_COURSE_SUCCESS';
 
+export const LOAD_MORE_COURSES = '[Courses] LOAD_MORE_COURSES';
+export const UPDATE_SEARCH_QUERY = '[Courses] UPDATE_SEARCH_QUERY';
+
 export const CLEAR_STATE = '[Courses] CLEAR_STATE';
 
 export class LoadCourses implements Action {
   readonly type = LOAD_COURSES;
 
-  constructor(public query: string, public skip: number, public take: number) {}
+  constructor() {}
 }
 
 export class LoadCoursesSuccess implements Action {
