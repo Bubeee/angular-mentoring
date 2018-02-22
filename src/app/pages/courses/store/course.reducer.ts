@@ -36,6 +36,9 @@ export const CourseReducer = (
     case CourseActions.UPDATE_SEARCH_QUERY: {
       return newState(state, { query: action.payload });
     }
+    case CourseActions.LOAD_MORE_COURSES: {
+      return newState(state, { coursesLoaded: action.payload + state.coursesLoaded });
+    }
     case CourseActions.CLEAR_STATE:
       return newState(state, { ...defaultState });
     default: {

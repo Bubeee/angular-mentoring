@@ -90,11 +90,17 @@ export class UpdateSearchQuery implements Action {
 export class ClearState implements Action {
   readonly type = CLEAR_STATE;
 
-  constructor() { }
+  constructor() {}
+}
+
+export class LoadMoreCourses implements Action {
+  readonly type = LOAD_MORE_COURSES;
+
+  constructor(public payload?) {}
 }
 
 export type All =
-    LoadCourses
+  | LoadCourses
   | LoadCoursesSuccess
   | LoadCourse
   | LoadCourseSuccess
