@@ -81,6 +81,12 @@ export class DeleteCourseSuccess implements Action {
   constructor(public payload?) {}
 }
 
+export class UpdateSearchQuery implements Action {
+  readonly type = UPDATE_SEARCH_QUERY;
+
+  constructor(public payload?) {}
+}
+
 export class ClearState implements Action {
   readonly type = CLEAR_STATE;
 

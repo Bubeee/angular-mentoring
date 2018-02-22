@@ -29,17 +29,19 @@ export class CourseEffects {
   constructor(
     private actions: Actions,
     private coursesService: CoursesService,
-    private store: Store<CourseListState>
+    private store: Store<any>
   ) {}
 
   @Effect()
   loadCourses$: Observable<Action> = this.actions
     .ofType(CourseActions.LOAD_COURSES)
     .pipe(
-      withLatestFrom(this.store.select(state => state.query)),
-      withLatestFrom(this.store.select(state => state.coursesLoaded)),
+      withLatestFrom(this.store.select(state => state.CourseList.query)),
+      withLatestFrom(
+        this.store.select(state => state.CourseList.coursesLoaded)
+      ),
       mergeMap(([[action, q], coursesLoaded]) => {
-        return this.coursesService.SearchCourses('', 0, 3);
+        return this.coursesService.SearchCourses(q, 0, coursesLoaded);
       })
     )
     .map((courses: any) => {

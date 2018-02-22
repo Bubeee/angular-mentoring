@@ -19,7 +19,10 @@ const newState = (state, newData) => {
   return Object.assign({}, state, newData);
 };
 
-export const CourseReducer = (state: CourseListState = defaultState, action) => {
+export const CourseReducer = (
+  state: CourseListState = defaultState,
+  action
+) => {
   switch (action.type) {
     case CourseActions.LOAD_COURSES_SUCCESS: {
       return newState(state, { courses: action.payload });
@@ -29,6 +32,9 @@ export const CourseReducer = (state: CourseListState = defaultState, action) => 
     }
     case CourseActions.DELETE_COURSE_SUCCESS: {
       return newState(state, { courses: action.payload });
+    }
+    case CourseActions.UPDATE_SEARCH_QUERY: {
+      return newState(state, { query: action.payload });
     }
     case CourseActions.CLEAR_STATE:
       return newState(state, { ...defaultState });

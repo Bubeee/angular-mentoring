@@ -58,6 +58,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   onSearch(searchString: string) {
+    this.store.dispatch(new CourseActions.UpdateSearchQuery(searchString));
     this.store.dispatch(new CourseActions.LoadCourses());
   }
 
