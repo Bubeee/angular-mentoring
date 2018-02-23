@@ -16,7 +16,7 @@ export const EDIT_COURSE_SUCCESS = '[Course] EDIT_COURSE_SUCCESS';
 export const DELETE_COURSE = '[Course] DELETE_COURSE';
 export const DELETE_COURSE_SUCCESS = '[Course] DELETE_COURSE_SUCCESS';
 
-export const LOAD_MORE_COURSES = '[Courses] LOAD_MORE_COURSES';
+export const UPDATE_COURSES_TO_LOAD_COUNT = '[Courses] LOAD_MORE_COURSES';
 export const UPDATE_SEARCH_QUERY = '[Courses] UPDATE_SEARCH_QUERY';
 
 export const CLEAR_STATE = '[Courses] CLEAR_STATE';
@@ -93,8 +93,8 @@ export class ClearState implements Action {
   constructor() {}
 }
 
-export class LoadMoreCourses implements Action {
-  readonly type = LOAD_MORE_COURSES;
+export class UpdateCoursesToLoadCount implements Action {
+  readonly type = UPDATE_COURSES_TO_LOAD_COUNT;
 
   constructor(public payload?) {}
 }

@@ -36,7 +36,7 @@ export const CourseReducer = (
     case CourseActions.UPDATE_SEARCH_QUERY: {
       return newState(state, { query: action.payload });
     }
-    case CourseActions.LOAD_MORE_COURSES: {
+    case CourseActions.UPDATE_COURSES_TO_LOAD_COUNT: {
       return newState(state, { coursesLoaded: action.payload + state.coursesLoaded });
     }
     case CourseActions.CLEAR_STATE:

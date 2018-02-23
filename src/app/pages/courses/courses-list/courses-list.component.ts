@@ -62,9 +62,9 @@ export class CoursesListComponent implements OnInit, OnDestroy {
     this.store.dispatch(new CourseActions.LoadCourses());
   }
 
-  load() {
-    this.store.dispatch(new CourseActions.LoadMoreCourses(3));
-
+  loadMore() {
+    this.store.dispatch(new CourseActions.UpdateSearchQuery(''));
+    this.store.dispatch(new CourseActions.UpdateCoursesToLoadCount(3));
     this.store.dispatch(new CourseActions.LoadCourses());
   }
 
