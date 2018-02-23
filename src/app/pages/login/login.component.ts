@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
         password: value.password
       })
     );
-    this.router.navigate(['courses']);
+    // this.router.navigate(['courses']);
   }
 }

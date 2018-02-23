@@ -38,34 +38,22 @@ export class LoginEffects {
   @Effect()
   login$ = this.actions
     .ofType(LoginActions.LOGIN)
-    // .switchMap((action: LoginActions.Login) => {
-    //   let mappedActions = [];
-    //   mappedActions.push(new LoginActions.LoginSuccess({ loggedIn: true }));
-    //   if (action.payload.onCompleteActions) {
-    //     mappedActions = mappedActions.concat(action.payload.onCompleteActions);
-    //   }
-
-    //   return this.authService
-    //     .Login(action.payload.login, action.payload.password)
-    //     .mergeMap(mappedActions)
-    //     .catch(error => {
-    //       console.log(error);
-    //       return of();
-    //     });
-    // });
-
     .map((action: LoginActions.Login) => action.payload)
     .switchMap(creds => {
       return this.authService.Login(creds.login, creds.password);
     })
-    .map(token => {
+    .switchMap(token => {
       localStorage.setItem('token', token);
-      return new LoginActions.LoginSuccess({ name, token });
-    })
-    .catch(error => {
-      console.log(error);
-      return of();
+      return [
+        new LoginActions.LoginSuccess({ name, token }),
+        new LoginActions.LoginSuccessRedirect()
+      ];
     });
+
+  @Effect({ dispatch: false })
+  redirectAfterLogin = this.actions
+    .ofType(LoginActions.LOGIN_SUCCESS_REDIRECT)
+    .do(_ => this.router.navigate(['/courses']));
 
   @Effect()
   getUserInfo$ = this.actions
