@@ -21,10 +21,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this._authorizationService.logins.subscribe(name =>
-    //   this.router.navigate(['courses'])
-    // );
-
     this.loginForm = this._formBuilder.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -44,6 +40,5 @@ export class LoginComponent implements OnInit {
         password: value.password
       })
     );
-    // this.router.navigate(['courses']);
   }
 }
