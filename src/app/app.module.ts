@@ -39,6 +39,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CourseReducer } from './pages/courses/store/course.reducer';
 import { CourseEffects } from './pages/courses/store/course.effects';
+import { LoginReducer } from './pages/login/store/login.reducer';
+import { LoginEffects } from './pages/login/store/login.effects';
 
 @NgModule({
   declarations: [
@@ -71,10 +73,11 @@ import { CourseEffects } from './pages/courses/store/course.effects';
     HttpModule,
     HttpClientModule,
     StoreModule.forRoot({
-      CourseList: CourseReducer
+      CourseList: CourseReducer,
+      Auth: LoginReducer
     }),
     EffectsModule.forRoot([
-      CourseEffects
+      CourseEffects, LoginEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 10

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../common/services/authorization/authorization.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as LoginActions from './store/login.actions';
 
 @Component({
   selector: 'app-login-page',
@@ -14,13 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authorizationService: AuthorizationService,
     private router: Router,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private store: Store<any>
   ) {}
 
   ngOnInit() {
-    this._authorizationService.logins.subscribe(name =>
-      this.router.navigate(['courses'])
-    );
+    // this._authorizationService.logins.subscribe(name =>
+    //   this.router.navigate(['courses'])
+    // );
 
     this.loginForm = this._formBuilder.group({
       login: ['', [Validators.required]],
@@ -35,6 +38,12 @@ export class LoginComponent implements OnInit {
     value: { login: string; password: string };
     valid: boolean;
   }) {
-    this._authorizationService.Login(value.login, value.password);
+    this.store.dispatch(
+      new LoginActions.Login({
+        login: value.login,
+        password: value.password
+      })
+    );
+    this.router.navigate(['courses']);
   }
 }

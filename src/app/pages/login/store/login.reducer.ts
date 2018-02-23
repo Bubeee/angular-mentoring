@@ -4,12 +4,12 @@ export type Action = LoginActions.All;
 
 export interface LoginState {
   name: string;
-  token: string;
+  loggedIn: boolean;
 }
 
 export const defaultState: LoginState = {
   name: '',
-  token: ''
+  loggedIn: false
 };
 
 const newState = (state, newData) => {
@@ -19,13 +19,13 @@ const newState = (state, newData) => {
 export const LoginReducer = (state: LoginState = defaultState, action) => {
   switch (action.type) {
     case LoginActions.LOGIN_SUCCESS: {
-      return newState(state, { name: action.payload });
+      return newState(state, { token: action.payload.token });
     }
     case LoginActions.LOGOUT_SUCCESS: {
       return newState(state, { ...defaultState });
     }
     case LoginActions.GET_USER_INFO_SUCCESS: {
-      return newState(state, { name: action.payload });
+      return newState(state, { name: action.payload.first + ' ' + action.payload.last });
     }
     default: {
       return state;

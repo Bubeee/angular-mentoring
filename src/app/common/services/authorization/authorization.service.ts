@@ -18,13 +18,11 @@ class LoginResponse {
 }
 
 class UserResponse {
-  login: string;
+  name: string;
 }
 
 @Injectable()
 export class AuthorizationService implements OnInit {
-  public logins: ReplaySubject<string> = new ReplaySubject(1);
-
   ngOnInit(): void {
     this.GetUserInfo();
   }
@@ -39,21 +37,21 @@ export class AuthorizationService implements OnInit {
         login: name,
         password: password
       })
-      .subscribe(
-        (res: LoginResponse) => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          this.logins.next(name);
-        },
-        err => {
-          console.log(`Error occured ${err}`);
-        }
-      );
+      .map((response: LoginResponse) => response.token);
+    // .subscribe(
+    //   (res: LoginResponse) => {
+    //     console.log(res);
+    //     localStorage.setItem('token', res.token);
+    //     this.logins.next(name);
+    //   },
+    //   err => {
+    //     console.log(`Error occured ${err}`);
+    //   }
+    // );
   }
 
   public Logout() {
     localStorage.setItem('token', '');
-    this.logins.next('');
   }
 
   public IsAuthenticated(): boolean {
@@ -68,15 +66,9 @@ export class AuthorizationService implements OnInit {
     if (this.IsAuthenticated()) {
       const loginUrl = `${environment.apiEndpoints.api}/auth/userinfo`;
 
-      return this._http.post<UserResponse>(loginUrl, {}).subscribe(
-        (res: UserResponse) => {
-          console.log(res);
-          this.logins.next(res.login);
-        },
-        err => {
-          console.log(`Error occured ${err}`);
-        }
-      );
+      return this._http
+        .post<UserResponse>(loginUrl, {})
+        .map((response: UserResponse) => response.name);
     }
   }
 }

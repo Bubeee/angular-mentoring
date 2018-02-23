@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthorizationService } from '../../common/services/authorization/authorization.service';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import * as LoginActions from '../../pages/login/store/login.actions';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +11,11 @@ import { AuthorizationService } from '../../common/services/authorization/author
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUserName: string;
+  currentUserName: Observable<string>;
   constructor(
     private _authorizationService: AuthorizationService,
-    private _router: Router
+    private _router: Router,
+    private store: Store<any>
   ) {}
 
   isNotOnLoginPage(): boolean {
@@ -37,12 +41,10 @@ export class HeaderComponent implements OnInit {
   }
 
   private fetchUserInfo() {
-    this._authorizationService.logins.subscribe(
-      login => (this.currentUserName = login)
-    );
+    this.currentUserName = this.store.select(state => state.Auth.name);
 
     if (this.isAuthenticated()) {
-      this._authorizationService.GetUserInfo();
+      this.store.dispatch(new LoginActions.GetUserInfo());
     }
   }
 }
