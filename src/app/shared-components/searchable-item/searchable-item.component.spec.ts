@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchableItemComponent } from './searchable-item.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('SearchableItemComponent', () => {
   let component: SearchableItemComponent;
@@ -8,7 +9,8 @@ describe('SearchableItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchableItemComponent ]
+      declarations: [ SearchableItemComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

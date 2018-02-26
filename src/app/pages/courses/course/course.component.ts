@@ -1,4 +1,4 @@
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -28,7 +28,6 @@ export class CourseComponent implements OnInit, OnDestroy {
   private courseSubscription: Subscription;
 
   constructor(
-    private location: Location,
     private formBuilder: FormBuilder,
     private authorsService: AuthorsService,
     private router: ActivatedRoute,

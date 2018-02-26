@@ -42,13 +42,16 @@ export class LoginEffects {
     .switchMap(creds => {
       return this.authService.Login(creds.login, creds.password);
     })
-    .switchMap(token => {
-      localStorage.setItem('token', token);
-      return [
-        new LoginActions.LoginSuccess({ name, token }),
-        new LoginActions.LoginSuccessRedirect()
-      ];
-    });
+    .pipe(
+      map(token => {
+        localStorage.setItem('token', token);
+        return [
+          new LoginActions.LoginSuccess({ name, token }),
+          new LoginActions.LoginSuccessRedirect()
+        ];
+      }),
+      catchError(e => of(new LoginActions.LoginFailure()))
+    );
 
   @Effect({ dispatch: false })
   redirectAfterLogin = this.actions

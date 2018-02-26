@@ -62,7 +62,8 @@ import { LoginEffects } from './pages/login/store/login.effects';
     DateInputComponent,
     NotFoundComponent,
     CourseComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    TestPipe
   ],
   imports: [
     BrowserModule,
