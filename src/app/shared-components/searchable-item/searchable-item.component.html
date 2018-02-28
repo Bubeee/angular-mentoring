@@ -1,9 +1,9 @@
-<div class="searchable-item" [appFreshItem]="searchableItem.creationDate" [ngClass]="{'searchable-item__top-rated': searchableItem.topRated}">
+<div class="searchable-item" [appFreshItem]="searchableItem.date" [ngClass]="{'searchable-item__top-rated': searchableItem.topRated}">
   <div class="searchable-item__content">
     <div class="searchable-item__content__header">
       <h3 class="searchable-item__content__header__title">{{searchableItem.title | uppercase}}</h3>
       <p class="searchable-item__content__header__additional-info">{{searchableItem.duration | duration}}</p>
-      <p class="searchable-item__content__header__date">{{searchableItem.creationDate | date:'dd-MM-yyyy'}}</p>
+      <p class="searchable-item__content__header__date">{{searchableItem.date | date:'dd-MM-yyyy'}}</p>
       <i *ngIf="searchableItem.topRated" class="material-icons searchable-item__content__header__top-rated">star</i>
     </div>
 

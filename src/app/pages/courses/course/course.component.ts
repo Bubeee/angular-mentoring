@@ -43,7 +43,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       date: ['', [Validators.required, createDateDimeValidator('DD/MM/YYYY')]],
       duration: ['', [Validators.required, createNumberValidator()]],
       topRated: false,
-      authors: [[], [createPickerValidator()]],
+      authors: [[], [createPickerValidator()]]
     });
 
     const id = +this.router.snapshot.paramMap.get('id');
@@ -138,8 +138,11 @@ export class CourseComponent implements OnInit, OnDestroy {
 
     for (const author of formModel.authors) {
       if (author.isSelected) {
-        const authorDto = new AuthorDto();
-        authorDto.id = author.id;
+        const authorDto = new AuthorDto(
+          author.id,
+          author.firstName,
+          author.lastName
+        );
         course.authors.push(authorDto);
       }
     }

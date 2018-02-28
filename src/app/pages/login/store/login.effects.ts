@@ -15,7 +15,8 @@ import {
   mergeMap,
   catchError,
   switchMap,
-  map
+  map,
+  concatMap
 } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import { LoginState } from './login.reducer';
@@ -37,21 +38,30 @@ export class LoginEffects {
 
   @Effect()
   login$ = this.actions
-    .ofType(LoginActions.LOGIN)
+    // .ofType(LoginActions.LOGIN)
+    .do((action) => console.log(`Received ${action.type}`))
+    .filter((action) => action.type === LoginActions.LOGIN)
     .map((action: LoginActions.Login) => action.payload)
     .switchMap(creds => {
       return this.authService.Login(creds.login, creds.password);
     })
-    .pipe(
-      map(token => {
-        localStorage.setItem('token', token);
-        return [
-          new LoginActions.LoginSuccess({ name, token }),
-          new LoginActions.LoginSuccessRedirect()
-        ];
-      }),
-      catchError(e => of(new LoginActions.LoginFailure()))
-    );
+    // .switchMap(token => {
+    //   localStorage.setItem('token', token);
+    //   return [
+    //     new LoginActions.LoginSuccess({ name, token }),
+    //     new LoginActions.LoginSuccessRedirect()
+    //   ];
+    // });
+  .pipe(
+    mergeMap(token => {
+      localStorage.setItem('token', token);
+      return [
+        new LoginActions.LoginSuccess({ name, token }),
+        new LoginActions.LoginSuccessRedirect()
+      ];
+    }),
+    catchError(e => of(new LoginActions.LoginFailure()))
+  );
 
   @Effect({ dispatch: false })
   redirectAfterLogin = this.actions

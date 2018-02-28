@@ -5,17 +5,21 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DurationPipe } from '../../../common/pipes/duration.pipe';
 import { AuthorsService } from '../authors.service/authors.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CoursesService } from '../courses.service/courses.service';
 import { DatePipe } from '@angular/common';
+import 'rxjs/add/observable/of';
 
-import { HttpModule, Http, BaseRequestOptions, XHRBackend } from '@angular/http';
+import {
+  HttpModule,
+  Http,
+  BaseRequestOptions,
+  XHRBackend
+} from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-
-class FakeAuthorsService extends AuthorsService {}
-
-class FakeCoursesService extends CoursesService {}
+import { Observable } from 'rxjs/Observable';
+import { AuthorDto } from '../authors.service/author';
 
 class FakeHttpClient extends HttpClient {
   constructor() {
@@ -32,22 +36,47 @@ describe('CourseComponent', () => {
     navigate: jasmine.createSpy('navigate')
   };
 
+  const fakeCoursesService = {};
+  const fakeAuthorsService = {
+    getAuthors: _ =>
+      Observable.of([
+        new AuthorDto(1, 'Voada', 'asdasda'),
+        new AuthorDto(2, 'asdasd', 'asdasdad')
+      ])
+  };
+
+  const MockActivatedRoute = {
+    params: {
+      subscribe: jasmine
+        .createSpy('subscribe')
+        .and.returnValue(Observable.of(<Params>{ id: 1 }))
+    },
+    snapshot: {
+      paramMap: {
+        get: str => null
+      }
+    }
+  };
+
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
         declarations: [CourseComponent, DurationPipe],
-        imports: [ReactiveFormsModule],
+        imports: [ReactiveFormsModule, FormsModule],
         schemas: [NO_ERRORS_SCHEMA],
         providers: [
-          { provide: FormBuilder, useValue: new FormBuilder() },
+          FormBuilder,
           {
             provide: AuthorsService,
-            useValue: new FakeAuthorsService(null)
+            useValue: fakeAuthorsService
           },
-          { provide: ActivatedRoute, useValue: new ActivatedRoute() },
+          {
+            provide: ActivatedRoute,
+            useValue: MockActivatedRoute
+          },
           {
             provide: CoursesService,
-            useValue: new FakeCoursesService(null)
+            useValue: fakeCoursesService
           },
           { provide: DatePipe, useValue: new DatePipe('ru') },
           { provide: Router, useValue: mockRouter }
@@ -62,7 +91,11 @@ describe('CourseComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
+
+  // it('form invalid when empty', () => {
+  //   expect(component.courseForm.valid).toBeFalsy();
+  // });
 });

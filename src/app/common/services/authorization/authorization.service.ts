@@ -38,16 +38,6 @@ export class AuthorizationService implements OnInit {
         password: password
       })
       .map((response: LoginResponse) => response.token);
-    // .subscribe(
-    //   (res: LoginResponse) => {
-    //     console.log(res);
-    //     localStorage.setItem('token', res.token);
-    //     this.logins.next(name);
-    //   },
-    //   err => {
-    //     console.log(`Error occured ${err}`);
-    //   }
-    // );
   }
 
   public Logout() {

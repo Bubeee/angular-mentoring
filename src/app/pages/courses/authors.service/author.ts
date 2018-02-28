@@ -1,9 +1,11 @@
 import { ISelectableItem } from '../../../shared-components/controls/picker/selectable-item';
 
 export class AuthorDto {
-  id: number;
-  firstName: string;
-  lastName: string;
+  constructor(
+    public id: number,
+    public firstName: string,
+    public lastName: string
+  ) {}
 }
 
 export class Author implements AuthorDto, ISelectableItem {

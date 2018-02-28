@@ -62,8 +62,7 @@ import { LoginEffects } from './pages/login/store/login.effects';
     DateInputComponent,
     NotFoundComponent,
     CourseComponent,
-    BreadcrumbComponent,
-    TestPipe
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +76,10 @@ import { LoginEffects } from './pages/login/store/login.effects';
       CourseList: CourseReducer,
       Auth: LoginReducer
     }),
-    EffectsModule.forRoot([
-      CourseEffects, LoginEffects
-    ]),
+    EffectsModule.forRoot([CourseEffects, LoginEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    }),
+    })
   ],
   providers: [
     AuthorizationService,

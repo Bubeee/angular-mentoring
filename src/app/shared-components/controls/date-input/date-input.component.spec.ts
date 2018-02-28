@@ -34,8 +34,8 @@ describe('DateInputComponent', () => {
   });
 
   it('should be a text input control', () => {
-    component.registerOnChange = () => null;
-    component.value = '20/02/1999';
-    expect(element.textContent).toBe('20/02/1999');
+    component.registerOnChange(() => null);
+    component.writeValue('20/02/1999');
+    expect(component.value).toBe('20/02/1999');
   });
 });
